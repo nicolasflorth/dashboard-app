@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../src",
+    "../types/import-meta.d.ts",
+    "../vite-env.d.ts",
+    "./**/*.ts",
+    "./**/*.tsx"
+  ],
+  "compilerOptions": {
+    "types": ["vite/client"]
+  }
+}

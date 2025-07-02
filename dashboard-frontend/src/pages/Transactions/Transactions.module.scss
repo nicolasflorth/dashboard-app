@@ -1,0 +1,21 @@
+@use '~/styles/utils' as *;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: rem(20);
+  position: relative;
+  padding: rem(20);
+}
+.addTransactionButton {
+  @extend button;
+  position: relative;
+  float: right;
+}
+.overList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: rem(20);
+}

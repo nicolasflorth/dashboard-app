@@ -1,0 +1,25 @@
+# Node dependencies
+**/node_modules/
+
+# Environment variables
+**/.env
+
+# Build output
+dashboard-frontend/dist/
+
+# TypeScript build info
+dashboard-frontend/*.tsbuildinfo
+
+# Lock files (optional to ignore if you don’t want to commit them)
+# /dashboard-frontend/yarn.lock
+# /dashboard-frontend/package-lock.json
+# /dashboard-backend/package-lock.json
+
+# IDE/editor folder
+.vscode/
+
+# Storybook static output (if you generate it)
+dashboard-frontend/storybook-static/
+
+# Local config cache (if generated)
+dashboard-frontend/.eslintcache

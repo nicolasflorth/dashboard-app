@@ -1,0 +1,1 @@
+export type TransactionTypeEnum = 'Income' | 'Expense';

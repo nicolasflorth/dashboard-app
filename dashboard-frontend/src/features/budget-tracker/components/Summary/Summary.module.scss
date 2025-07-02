@@ -1,0 +1,33 @@
+@use '~/styles/utils' as *;
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    margin-top: rem(10);
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+
+        .label {
+            font-size: rem(16);
+            color: var(--color104);
+        }
+
+        .value {
+            font-size: rem(20);
+            font-weight: bold;
+            color: var(--color101);
+        }
+    }
+}
+
+.dashboard {
+    color: var(--color104);
+}
+
+.transactions {
+    color: var(--color104);
+}

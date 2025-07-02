@@ -1,0 +1,32 @@
+:root {
+  --color100: #007bff;     // Primary blue (buttons, headers)
+  --color101: #3399ff;     // Lighter blue (hover states, subtle accents)
+  --color102: #f8f9fa;     // Light gray (background rows)
+  --color103: #dee2e6;     // Border color
+  --color104: #343a40;     // Dark text
+  --color200: #ffe8cc;     // Light orange (Expense badge background)
+  --color201: #ffbf80;     // Medium orange (hover state or darker Expense)
+  --color300: #d4edda;     // Light green (Income badge background)
+  --color301: #a2d5ab;     // Medium green (Income hover/dark variant)
+  --color400: #ffffff;     // White (page background)
+  --color500: #ff4d4f;     // Error red (for error messages, alerts)
+  --color502: #d7292c;     // Red hover
+  --color501: #fff1f0;     // Light error background
+}
+
+[data-theme='dark'] {
+  --color100: #0c3a68;     // Primary blue (slightly muted for dark)
+  --color101: #66b2ff;     // Lighter blue (hover states, subtle accents)
+  --color102: #2b2f33;     // Dark gray for table row backgrounds
+  --color103: #444c56;     // Border color (subtle contrast)
+  --color104: #f1f1f1;     // Light text on dark background
+  --color200: #996600;     // Deep amber (Expense badge background)
+  --color201: #cc8800;     // Slightly brighter amber (hover/dark variant)
+  --color300: #294f36;     // Muted green background (Income badge background)
+  --color301: #5fa376;     // Softer green for hover/variant
+  --color400: #121212;     // Very dark background (page)
+  --color500: #ff4d4f;     // Error red (for error messages, alerts)
+  --color502: #ec4447;     // Red hover
+  --color501: #fff1f0;     // Light error background
+}
+
