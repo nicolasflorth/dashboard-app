@@ -2,50 +2,51 @@ $base-font-size: 16;
 @use 'sass:math';
 
 @function rem($px, $base: $base-font-size) {
-  @return math.div($px, $base) * 1rem;
+	@return math.div($px, $base) * 1rem;
 }
 
 button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  font-size: rem(16);
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 3px 0px;
-  &:hover {
-    background-color: #0056b3;
-    cursor: pointer;
-  }
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	background-color: #007bff;
+	color: white;
+	font-size: rem(16);
+	font-weight: 600;
+	transition: background-color 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin: 3px 0px;
+
+	&:hover {
+		background-color: #0056b3;
+		cursor: pointer;
+	}
 }
 
 @mixin transition($element, $timing, $animation) {
-  -webkit-transition: $element $timing $animation;
-  -moz-transition: $element $timing $animation;
-  -o-transition: $element $timing $animation;
-  transition: $element $timing $animation;
+	-webkit-transition: $element $timing $animation;
+	-moz-transition: $element $timing $animation;
+	-o-transition: $element $timing $animation;
+	transition: $element $timing $animation;
 }
 
-@mixin boxShadow($options) {  
-  -webkit-box-shadow: $options;
-  -moz-box-shadow: $options;
-  box-shadow: $options;
+@mixin boxShadow($options) {
+	-webkit-box-shadow: $options;
+	-moz-box-shadow: $options;
+	box-shadow: $options;
 }
 
 @mixin border-radius($topleft, $topright, $bottomright, $bottomleft) {
-  border-top-left-radius: $topleft;
-  border-top-right-radius: $topright;
-  border-bottom-right-radius: $bottomright;
-  border-bottom-left-radius: $bottomleft;
-  -webkit-border-top-left-radius: $topleft;
-  -webkit-border-top-right-radius: $topright;
-  -webkit-border-bottom-right-radius: $bottomright;
-  -webkit-border-bottom-left-radius: $bottomleft;
-  -moz-border-radius-topleft: $topleft;
-  -moz-border-radius-topright: $topright;
-  -moz-border-radius-bottomright: $bottomright;
-  -moz-border-radius-bottomleft: $bottomleft;
+	border-top-left-radius: $topleft;
+	border-top-right-radius: $topright;
+	border-bottom-right-radius: $bottomright;
+	border-bottom-left-radius: $bottomleft;
+	-webkit-border-top-left-radius: $topleft;
+	-webkit-border-top-right-radius: $topright;
+	-webkit-border-bottom-right-radius: $bottomright;
+	-webkit-border-bottom-left-radius: $bottomleft;
+	-moz-border-radius-topleft: $topleft;
+	-moz-border-radius-topright: $topright;
+	-moz-border-radius-bottomright: $bottomright;
+	-moz-border-radius-bottomleft: $bottomleft;
 }

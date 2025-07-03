@@ -42,14 +42,14 @@ function App() {
 								</Suspense>
 							</ProtectedRoute>
 						}
-						>
-							<Route path="transactions" element={
-								<ProtectedRoute allowedRoles={[ROLES.Admin]}>
-									<Suspense fallback={renderLoader()}>
-										<Transactions />
-									</Suspense>
-								</ProtectedRoute>
-							} />
+					>
+						<Route path="transactions" element={
+							<ProtectedRoute allowedRoles={[ROLES.Admin]}>
+								<Suspense fallback={renderLoader()}>
+									<Transactions />
+								</Suspense>
+							</ProtectedRoute>
+						} />
 					</Route>
 				</Route>
 

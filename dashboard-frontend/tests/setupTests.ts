@@ -5,9 +5,9 @@ import '@testing-library/jest-dom';
 
 // Example setup code
 beforeAll(() => {
-  console.log('Setting up tests...');
+	console.log('Setting up tests...');
 });
 
 afterAll(() => {
-  console.log('Cleaning up after tests...');
+	console.log('Cleaning up after tests...');
 });

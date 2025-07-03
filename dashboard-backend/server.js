@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import usersRoutes from './routes/users.js';
+import transactionsRoutes from './routes/transactions.js';
 import seedDummyUser from './utils/seedDummyUser.js';
 import seedDummyTransactions from './utils/seedDummyTransactions.js';
 import dotenv from 'dotenv';
@@ -36,7 +37,7 @@ mongoose.connect('mongodb://localhost:27017/dashboard-app')
 const db = mongoose.connection;
 // If the connection drops later it will catch the error
 db.on('error', (error) => {
-  console.error('MongoDB runtime error:', error);
+	console.error('MongoDB runtime error:', error);
 });
 
 
@@ -64,8 +65,9 @@ app.use((req, res, next) => {
 app.use(cookieParser());
 
 app.use('/users', usersRoutes);
+app.use('/users', transactionsRoutes);
 
 // for development purposes
 app.use((req, res) => {
-  res.status(404).json({ error: 'Not Found', path: req.originalUrl });
+	res.status(404).json({ error: 'Not Found', path: req.originalUrl });
 });

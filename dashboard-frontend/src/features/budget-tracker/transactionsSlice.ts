@@ -1,32 +1,83 @@
 //slice, actions, reducer
-import { createSlice, PayloadAction, createAsyncThunk  } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import type { TransactionType } from '@/types/transaction';
 import { RootState } from '@/app/store';
-import { getTransactions } from '@/api/transactions';
+import { fetchTransactions, createTransaction, updateTransaction, deleteTransaction } from '@/api/transactions';
 import { createSelector } from '@reduxjs/toolkit';
 
-export const fetchTransactions = createAsyncThunk(
-  'transactions/fetchAll',
-  async (userId: string) => {
-    const response = await getTransactions(userId);
-    return response;
-  }
+export const fetchTransactionsAsync = createAsyncThunk(
+    'transactions/fetchAll',
+    async (userId: string) => {
+        const response = await fetchTransactions(userId);
+        console.log("Fetched transactions:", response);
+        return response;
+    }
 );
 
+export const createTransactionAsync = createAsyncThunk(
+    'transactions/create',
+    async ({ userId, data }: { userId: string; data: Partial<TransactionType> }) => {
+        const response = await createTransaction(userId, data);
+        return response;
+    }
+);
+
+export const updateTransactionAsync = createAsyncThunk(
+    'transactions/update',
+    async ({ userId, transactionId, data }: { userId: string; transactionId: string; data: Partial<TransactionType> }) => {
+        const response = await updateTransaction(userId, transactionId, data);
+        return response;
+    }
+);
+
+export const deleteTransactionAsync = createAsyncThunk(
+    'transactions/delete',
+    async ({ userId, transactionId }: { userId: string; transactionId: string }) => {
+        await deleteTransaction(userId, transactionId); // your API function
+        return transactionId;
+    }
+);
+
+const sortTransactions = (transactions: TransactionType[], order: 'asc' | 'desc') => {
+    return transactions.slice().sort((a, b) => {
+        const dateA = new Date(a.dateTime).getTime();
+        const dateB = new Date(b.dateTime).getTime();
+        return order === 'asc' ? dateA - dateB : dateB - dateA;
+    });
+};
+
 type TransactionsState = {
-  transactionsList: TransactionType[];
-  loading: boolean;
-  error: string | null;
-  totalAmount: number;
-  transactionCount: number;
+    transactionsList: TransactionType[];
+    sortOrder: 'asc' | 'desc';
+    fetch: {
+        loading: boolean;
+        error: string | null;
+    };
+    update: {
+        loading: boolean;
+        error: string | null;
+    };
+    create: {
+        loading: boolean;
+        error: string | null;
+    };
+    delete: {
+        loading: boolean;
+        error: string | null;
+    };
+    totalAmount: number;
+    transactionCount: number;
 };
 
 const initialState: TransactionsState = {
-  transactionsList: [],
-  loading: false,
-  error: null,
-  totalAmount: 0,
-  transactionCount: 0,
+    transactionsList: [],
+    sortOrder: 'desc',
+    fetch: { loading: false, error: null },
+    update: { loading: false, error: null },
+    create: { loading: false, error: null },
+    delete: { loading: false, error: null },
+    totalAmount: 0,
+    transactionCount: 0,
 };
 
 
@@ -34,53 +85,99 @@ const transactionsSlice = createSlice({
     name: 'transactions',
     initialState,
     reducers: {
-        addTransaction: (state, action: PayloadAction<TransactionType>) => {
-            state.transactionsList.push(action.payload);
-        },
-        updateTransaction: (state, action: PayloadAction<TransactionType>) => {
-            const index = state.transactionsList.findIndex(transaction => transaction._id === action.payload._id);
-            if (index !== -1) {
-                state.transactionsList[index] = action.payload;
-            }
-            console.log("Old transactions", state.transactionsList);
-            console.log("Updated transaction:", action.payload);
-            console.log("Old transaction:", state.transactionsList[index]);
-        },
-        removeTransaction: (state, action: PayloadAction<string>) => {
-            state.transactionsList = state.transactionsList.filter(
-                (transaction) => transaction._id !== action.payload
-            );
-        },
         sortTransactionsByDateTime: (state, action: PayloadAction<'asc' | 'desc'>) => {
-            state.transactionsList.sort((a, b) => {
-                const dateTimeA = new Date(a.dateTime).getTime();
-                const dateTimeB = new Date(b.dateTime).getTime();
-                return action.payload === 'asc' ? dateTimeA - dateTimeB : dateTimeB - dateTimeA;
-            });
+            state.sortOrder = action.payload;
+            state.transactionsList = sortTransactions([...state.transactionsList], state.sortOrder);
         }
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchTransactions.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+            // Fetch Transactions
+            .addCase(fetchTransactionsAsync.pending, (state) => {
+                state.fetch.loading = true;
+                state.fetch.error = null;
             })
-            .addCase(fetchTransactions.fulfilled, (state, action: PayloadAction<TransactionType[]>) => {
-                state.loading = false;
-                state.transactionsList = action.payload;
+            .addCase(fetchTransactionsAsync.fulfilled, (state, action: PayloadAction<TransactionType[]>) => {
+                state.fetch.loading = false;
+                state.transactionsList = sortTransactions([...action.payload], state.sortOrder);
                 state.transactionCount = action.payload.length;
-                state.totalAmount = action.payload.reduce((acc, txn) => 
+                state.totalAmount = action.payload.reduce((acc, txn) =>
                     txn.type === 'Income' ? acc + txn.amount : acc - txn.amount, 0
                 );
             })
-            .addCase(fetchTransactions.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message || 'Failed to load transactions';
+            .addCase(fetchTransactionsAsync.rejected, (state, action) => {
+                state.fetch.loading = false;
+                state.fetch.error = action.error.message || 'Failed to load transactions';
+            })
+
+            // Create Transaction
+            .addCase(createTransactionAsync.pending, (state) => {
+                state.create = { loading: true, error: null };
+            })
+            .addCase(createTransactionAsync.fulfilled, (state, action: PayloadAction<TransactionType>) => {
+                state.create.loading = false;
+                state.transactionsList.push(action.payload);
+                state.transactionCount += 1;
+                state.totalAmount += action.payload.type === 'Income'
+                    ? action.payload.amount
+                    : -action.payload.amount;
+
+                // Re-sort after adding new transaction
+                state.transactionsList = sortTransactions([...state.transactionsList], state.sortOrder);
+            })
+            .addCase(createTransactionAsync.rejected, (state, action) => {
+                state.create.loading = false;
+                state.create.error = action.error.message || 'Failed to create transaction';
+            })
+
+
+            // Update Transaction
+            .addCase(updateTransactionAsync.pending, (state) => {
+                state.update.loading = true;
+                state.update.error = null;
+            })
+            .addCase(updateTransactionAsync.fulfilled, (state, action: PayloadAction<TransactionType>) => {
+                state.update.loading = false;
+                const index = state.transactionsList.findIndex(
+                    (txn) => txn._id === action.payload._id
+                );
+                if (index !== -1) {
+                    state.transactionsList[index] = action.payload;
+                }
+                state.totalAmount = state.transactionsList.reduce((acc, txn) =>
+                    txn.type === 'Income' ? acc + txn.amount : acc - txn.amount, 0
+                );
+            })
+            .addCase(updateTransactionAsync.rejected, (state, action) => {
+                state.update.loading = false;
+                state.update.error = action.error.message || 'Failed to update transaction';
+            })
+
+            // Update Transaction
+            .addCase(deleteTransactionAsync.pending, (state) => {
+                state.delete.loading = true;
+                state.delete.error = null;
+            })
+            .addCase(deleteTransactionAsync.fulfilled, (state, action: PayloadAction<string>) => {
+                state.delete.loading = false;
+                state.transactionsList = state.transactionsList.filter(
+                    (txn) => txn._id !== action.payload
+                );
+                state.transactionCount = state.transactionsList.length;
+                state.totalAmount = state.transactionsList.reduce((acc, txn) =>
+                    txn.type === 'Income' ? acc + txn.amount : acc - txn.amount, 0
+                );
+            })
+            .addCase(deleteTransactionAsync.rejected, (state, action) => {
+                state.delete.loading = false;
+                state.delete.error = action.error.message || 'Failed to delete transaction';
             });
+
+
     }
 });
 
-export const { addTransaction, updateTransaction, removeTransaction, sortTransactionsByDateTime } = transactionsSlice.actions;
+export const { sortTransactionsByDateTime } = transactionsSlice.actions;
 export default transactionsSlice.reducer;
 
 export const selectTransactions = (state: RootState) => state.transactions.transactionsList;

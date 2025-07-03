@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     z-index: 10;
+
     &:before {
         content: '';
         position: absolute;
@@ -17,9 +18,10 @@
         height: 100%;
         left: 0px;
         top: 0px;
-        background: #000;
+        background: var(--color105Unchanged);
         opacity: 0.5;
     }
+
     .popupContent {
         position: relative;
         width: 800px;
@@ -30,9 +32,11 @@
         border-radius: rem(8);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         padding: rem(20);
+
         h2 {
             color: var(--color104);
         }
+
         .close {
             position: absolute;
             right: 10px;

@@ -5,17 +5,17 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
-  resolve: {
-    alias: {
-      '~': path.resolve(__dirname, 'src'), // ✅ allows @use '~/styles/utils'
-    },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '',
-      },
-    },
-  },
+	plugins: [react(), tsconfigPaths()],
+	resolve: {
+		alias: {
+			'~': path.resolve(__dirname, 'src'), // ✅ allows @use '~/styles/utils'
+		},
+	},
+	css: {
+		preprocessorOptions: {
+			scss: {
+				additionalData: '',
+			},
+		},
+	},
 })

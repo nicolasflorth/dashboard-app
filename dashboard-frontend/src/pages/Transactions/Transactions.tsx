@@ -11,35 +11,35 @@ import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/shared/components/Breadcrumbs/Breadcrumbs';
 
 function Transactions() {
-  const [isOpen, setOpen] = useState(false);
-  const [transactionId, setTransactionId] = useState('');
+	const [isOpen, setOpen] = useState(false);
+	const [transactionId, setTransactionId] = useState('');
 
-  const handleTransactionId = (id: string) => {
-    setTransactionId(id);
-    setOpen(true);
-  }
+	const handleTransactionId = (id: string) => {
+		setTransactionId(id);
+		setOpen(true);
+	}
 
-  return (
-    <main className="">
-      <div>
-        <Breadcrumbs />
-        <h1>Transactions</h1>
-        <div className={styles.overList}>
-          <Summary variant="transactions" />
-          <button className={styles.addTransactionButton} onClick={() => { isOpen === false ? setOpen(true) : setOpen(false) }}>+ Add transaction</button>
-        </div>
-        {isOpen && (
-          <Suspense fallback={renderLoader()}>
-            <Popup isOpen={isOpen} onClose={() => { setOpen(false); setTransactionId('')}}>
-              <AddTransactionForm transactionId={transactionId} onSuccess={() => { setOpen(false); setTransactionId('')}} />
-            </Popup>
-          </Suspense>
-        )}
-        <TransactionList handleTransactionId={handleTransactionId} />
-        <CategoriesFilters />
-      </div>
-    </main>
-  );
+	return (
+		<main className="">
+			<div>
+				<Breadcrumbs />
+				<h1>Transactions</h1>
+				<div className={styles.overList}>
+					<Summary variant="transactions" />
+					<button className={styles.addTransactionButton} onClick={() => { isOpen === false ? setOpen(true) : setOpen(false) }}>+ Add transaction</button>
+				</div>
+				{isOpen && (
+					<Suspense fallback={renderLoader()}>
+						<Popup isOpen={isOpen} onClose={() => { setOpen(false); setTransactionId('') }}>
+							<AddTransactionForm transactionId={transactionId} onSuccess={() => { setOpen(false); setTransactionId('') }} />
+						</Popup>
+					</Suspense>
+				)}
+				<TransactionList handleTransactionId={handleTransactionId} />
+				<CategoriesFilters />
+			</div>
+		</main>
+	);
 }
 
 export default Transactions;

@@ -1,19 +1,24 @@
 .breadcrumb {
     margin-left: 0px;
+
     a {
         color: var(--color104);
         text-decoration: none;
         margin: 0px 10px;
+
         &:first-child {
             margin-left: 0;
         }
+
         &:hover {
             text-decoration: underline;
         }
     }
+
     span {
         color: var(--color104);
         margin-left: 10px;
+
         span {
             margin-left: 0px;
         }

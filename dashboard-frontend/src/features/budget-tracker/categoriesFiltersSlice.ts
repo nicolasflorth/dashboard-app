@@ -13,7 +13,7 @@ const categoriesFiltersSlice = createSlice({
     },
 });
 
-export const {  } = categoriesFiltersSlice.actions;
+export const { } = categoriesFiltersSlice.actions;
 export default categoriesFiltersSlice.reducer;
 
 export const selectCategoriesFilters = (state: RootState) => state.categoriesFilters.filters;

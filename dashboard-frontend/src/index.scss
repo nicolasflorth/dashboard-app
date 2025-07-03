@@ -1,66 +1,68 @@
 @use '~/styles/utils' as *;
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--color400);
-  color: var(--color104);
-  padding-bottom: 100px;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: var(--color400);
+	color: var(--color104);
+	padding-bottom: 100px;
 }
 
 main {
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: rem(10);
-    position: relative;
-    padding: rem(10);
-  }
+	>div {
+		display: flex;
+		flex-direction: column;
+		gap: rem(10);
+		position: relative;
+		padding: rem(10);
+	}
 }
 
 h1 {
-  font-size: rem(36);
-  font-weight: 700;
-  margin-bottom: rem(16);
+	font-size: rem(36);
+	font-weight: 700;
+	margin-bottom: rem(16);
 }
 
 h2 {
-  font-size: rem(30);
-  font-weight: 700;
-  margin-bottom: rem(14);
+	font-size: rem(30);
+	font-weight: 700;
+	margin-bottom: rem(14);
 }
 
 h3 {
-  font-size: rem(24);
-  font-weight: 600;
-  margin-bottom: rem(12);
+	font-size: rem(24);
+	font-weight: 600;
+	margin-bottom: rem(12);
 }
 
 h4 {
-  font-size: rem(20);
-  font-weight: 600;
-  margin-bottom: rem(10);
+	font-size: rem(20);
+	font-weight: 600;
+	margin-bottom: rem(10);
 }
 
 h5 {
-  font-size: rem(16);
-  font-weight: 500;
-  margin-bottom: rem(8);
+	font-size: rem(16);
+	font-weight: 500;
+	margin-bottom: rem(8);
 }
 
 h6 {
-  font-size: rem(14);
-  font-weight: 500;
-  margin-bottom: rem(6);
+	font-size: rem(14);
+	font-weight: 500;
+	margin-bottom: rem(6);
 }
+
 p {
-  font-size: rem(14);
-  padding: rem(10) 0px;
-  a {
-    color: var(--color104);
-  }
+	font-size: rem(14);
+	padding: rem(10) 0px;
+
+	a {
+		color: var(--color104);
+	}
 }

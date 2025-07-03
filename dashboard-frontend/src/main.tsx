@@ -16,17 +16,17 @@ const rootElement = document.getElementById('root') as HTMLElement;
 const root = ReactDOM.createRoot(rootElement);
 
 root.render(
-<ThemeProvider>
-  <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-        {/* <ReactQueryDevtools initialIsOpen={false} />*/}
-      </QueryClientProvider>
-    </Provider>
-  </React.StrictMode>
-</ThemeProvider>
+	<ThemeProvider>
+		<React.StrictMode>
+			<Provider store={store}>
+				<QueryClientProvider client={queryClient}>
+					<BrowserRouter>
+						<App />
+					</BrowserRouter>
+					{/* <ReactQueryDevtools initialIsOpen={false} />*/}
+				</QueryClientProvider>
+			</Provider>
+		</React.StrictMode>
+	</ThemeProvider>
 );
 

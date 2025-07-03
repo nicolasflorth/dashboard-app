@@ -1,0 +1,37 @@
+:global(.MuiPaper-root) {
+    background-color: var(--color103);
+    color: var(--color104);
+}
+
+:global(.MuiDialogContent-root p) {
+    color: var(--color104);
+
+}
+
+:global(.MuiButton-colorPrimary) {
+    background-color: var(--color101);
+    color: var(--color103);
+
+    &:hover {
+        background-color: var(--color100);
+        color: var(--color104);
+    }
+}
+
+:global(.MuiButton-colorError) {
+    background-color: var(--color500);
+    color: var(--color103);
+
+    &:hover {
+        background-color: var(--color502);
+        color: var(--color104);
+    }
+}
+
+:global(.MuiButtonBase-root) {
+    color: var(--text-color);
+
+    &:hover {
+        color: var(--text-color);
+    }
+}

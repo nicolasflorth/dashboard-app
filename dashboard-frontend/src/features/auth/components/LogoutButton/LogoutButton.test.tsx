@@ -12,7 +12,7 @@ describe('LogoutButton', () => {
         store.dispatch(
             login({
                 user: {
-                    _id: 1,
+                    _id: '1',
                     email: 'test@test.com',
                     roles: ['admin'],
                 },

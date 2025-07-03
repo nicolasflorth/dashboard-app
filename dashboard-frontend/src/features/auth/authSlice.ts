@@ -13,7 +13,7 @@ const addUserSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<{user: MinimalUser ; token: string}>) => {
+        login: (state, action: PayloadAction<{ user: MinimalUser; token: string }>) => {
             state.user = action.payload.user;
             state.accessToken = action.payload.token;
             state.isAuthenticated = true;

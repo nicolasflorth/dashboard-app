@@ -1,10 +1,11 @@
 @use '~/styles/utils' as *;
 
 .logoutButton {
-  margin-left: 15px;
-  @extend button;
-  background-color: var(--color500);
-  &:hover {
-    background-color: var(--color502);
-  }
+	margin-left: 15px;
+	@extend button;
+	background-color: var(--color500);
+
+	&:hover {
+		background-color: var(--color502);
+	}
 }

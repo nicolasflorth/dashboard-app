@@ -4,15 +4,15 @@ import { Provider } from 'react-redux';
 import { store } from '@/app/store';
 
 const meta: Meta<typeof LogoutButton> = {
-  title: 'Components/LogoutButton',
-  component: LogoutButton,
-  decorators: [
-    (Story) => (
-      <Provider store={store}>
-        <Story />
-      </Provider>
-    ),
-  ],
+	title: 'Components/LogoutButton',
+	component: LogoutButton,
+	decorators: [
+		(Story) => (
+			<Provider store={store}>
+				<Story />
+			</Provider>
+		),
+	],
 };
 
 export default meta;

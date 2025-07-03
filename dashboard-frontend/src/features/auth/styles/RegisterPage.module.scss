@@ -1,3 +1,5 @@
+@use '~/styles/utils' as *;
+
 .loginForm {
     display: flex;
     flex-direction: column;
@@ -11,24 +13,24 @@
         gap: 1rem;
         input {
             padding: 0.5rem;
-            border: 1px solid #ccc;
+            border: 1px solid var(--color104);
             border-radius: 4px;
             font-size: 1rem;
         }
         .error {
-            color: red;
+            color: var(--color500);
             font-size: 0.875rem;
         }
         button {
             padding: 0.5rem;
             border: none;
             border-radius: 4px;
-            background-color: #007bff;
+            background-color: var(--color101);
             color: white;
             font-size: 1rem;
             cursor: pointer;
             &:hover {
-                background-color: #0056b3;
+                background-color: var(--color100);
             }
         }
     }
