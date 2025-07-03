@@ -25,7 +25,7 @@
 
 # Recomended environment
 - node v20.19.3 
-- npm 10.8.2
+- npm v10.8.2
 
 
 # Preview
