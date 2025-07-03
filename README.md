@@ -5,5 +5,41 @@
 For both parts you will find a README.md inside each directory with steps on how to run them.
 
 # Recomended environment
-node v20.19.3
-npm 10.8.2
+- node v20.19.3 
+- npm 10.8.2
+
+> **Note:** Database is seeded with 10 transaction and one user on the first backend run
+> **Note:** Login details of the created user: test@test.com / emilyspass
+
+# Preview
+<table>
+  <tr>
+    <td>
+      <a href="images/login-page.jpg" target="_blank">
+        <img src="images/login-page.jpg" alt="Login page" width="250" style="margin:10px;" />
+      </a>
+    </td>
+    <td>
+      <a href="images/dashboard-page.jpg" target="_blank">
+        <img src="images/dashboard-page.jpg" alt="Dashboard page" width="250" style="margin:10px;" />
+      </a>
+    </td>
+    <td>
+      <a href="images/transactions-listing.jpg" target="_blank">
+        <img src="images/transactions-listing.jpg" alt="Transactions listing" width="250" style="margin:10px;" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="images/transactions-listing-add-transaction.jpg" target="_blank">
+        <img src="images/transactions-listing-add-transaction.jpg" alt="Add transaction" width="250" style="margin:10px;" />
+      </a>
+    </td>
+    <td>
+      <a href="images/transactions-listing-edit-transaction.jpg" target="_blank">
+        <img src="images/transactions-listing-edit-transaction.jpg" alt="Edit transaction" width="250" style="margin:10px;" />
+      </a>
+    </td>
+  </tr>
+</table>
