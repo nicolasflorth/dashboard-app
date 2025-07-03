@@ -32,31 +32,47 @@
 <table>
   <tr>
     <td>
-      <a href="images/login-page.jpg" target="_blank">
-        <img src="images/login-page.jpg" alt="Login page" width="250" style="margin:10px;" />
+      <a href="images/login-page-min.jpg" target="_blank">
+        <img src="images/login-page-min.jpg" alt="Login page" width="250" style="margin:10px;" />
       </a>
     </td>
     <td>
-      <a href="images/dashboard-page.jpg" target="_blank">
-        <img src="images/dashboard-page.jpg" alt="Dashboard page" width="250" style="margin:10px;" />
+      <a href="images/dashboard-page-min.jpg" target="_blank">
+        <img src="images/dashboard-page-min.jpg" alt="Dashboard page" width="250" style="margin:10px;" />
       </a>
     </td>
     <td>
-      <a href="images/transactions-listing.jpg" target="_blank">
-        <img src="images/transactions-listing.jpg" alt="Transactions listing" width="250" style="margin:10px;" />
+      <a href="images/transactions-listing-min.jpg" target="_blank">
+        <img src="images/transactions-listing-min.jpg" alt="Transactions listing" width="250" style="margin:10px;" />
       </a>
     </td>
   </tr>
   <tr>
     <td>
-      <a href="images/transactions-listing-add-transaction.jpg" target="_blank">
-        <img src="images/transactions-listing-add-transaction.jpg" alt="Add transaction" width="250" style="margin:10px;" />
+      <a href="images/transactions-listing-light-theme-min.jpg" target="_blank">
+        <img src="images/transactions-listing-light-theme-min.jpg" alt="Transactions listing light theme" width="250" style="margin:10px;" />
       </a>
     </td>
     <td>
-      <a href="images/transactions-listing-edit-transaction.jpg" target="_blank">
-        <img src="images/transactions-listing-edit-transaction.jpg" alt="Edit transaction" width="250" style="margin:10px;" />
+      <a href="images/transactions-listing-add-transaction-min.jpg" target="_blank">
+        <img src="images/transactions-listing-add-transaction-min.jpg" alt="Add transaction" width="250" style="margin:10px;" />
       </a>
+    </td>
+    <td>
+      <a href="images/transactions-listing-edit-transaction-min.jpg" target="_blank">
+        <img src="images/transactions-listing-edit-transaction-min.jpg" alt="Edit transaction" width="250" style="margin:10px;" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="images/transactions-listing-remove-transaction-min.jpg" target="_blank">
+        <img src="images/transactions-listing-remove-transaction-min.jpg" alt="Remove transaction" width="250" style="margin:10px;" />
+      </a>
+    </td>
+    <td>
+    </td>
+    <td>
     </td>
   </tr>
 </table>
