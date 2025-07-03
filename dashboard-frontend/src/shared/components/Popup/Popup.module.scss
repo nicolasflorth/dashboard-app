@@ -23,10 +23,9 @@
     .popupContent {
         position: relative;
         width: 800px;
-        height: 800px;
         transform: translate(-50%, -50%);
         width: rem(800);
-        height: rem(500);
+        height: auto;
         background-color: var(--color103);
         border-radius: rem(8);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
