@@ -56,7 +56,6 @@
     "globals": "^16.0.0",
     "jsdom": "^26.1.0",
     "playwright": "^1.52.0",
-    "react-datetime-picker": "^6.0.1",
     "react-hook-form": "^7.56.3",
     "react-redux": "^9.2.0",
     "sass-embedded": "^1.88.0",

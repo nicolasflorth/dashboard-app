@@ -1,6 +1,6 @@
 # This projects has 2 sides
-- dashboard-frontend that is built with React 19, TypeScript on Vite
-- dashboard-backend that is working on Express JS and the Database is on MangoDB with Mangoose
+- dashboard-frontend - built with React 19, TypeScript, and Vite
+- dashboard-backend - powered by Express.js and connected to a MongoDB database using Mongoose
 
 > **Note:** For both parts you will find a README.md inside each directory with steps on how to run them.
 - <a href="https://github.com/nicolasflorth/dashboard-app/blob/main/dashboard-frontend/README.md" title="Frontend readme" target="_blank">Frontend readme</a>
@@ -9,6 +9,18 @@
 > **Note:** Database is seeded with 10 transaction and one user on the first backend run
 
 > **Important:** Login details of the created user: test@test.com / emilyspass
+
+## The Frontend is using
+- React 19
+- React router
+- Redux toolkit
+- React datetime
+- Tanstack react query
+- Zod
+- MUI components
+- Axios
+- JWT
+- Vitest
 
 
 # Recomended environment

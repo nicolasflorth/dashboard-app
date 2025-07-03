@@ -1,8 +1,5 @@
 # React + TypeScript + Vite
 
-This app is using the backend from dashboard-backend
-This project is using JWT authentication
-
 ## run the frontend
 `npm run dev`
 
