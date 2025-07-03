@@ -1,15 +1,20 @@
 # This projects has 2 sides
-- dashboard-backend that is working on Express JS and the DataBase is on MangoDB with Mangoose
+- dashboard-backend that is working on Express JS and the Database is on MangoDB with Mangoose
 - dashboard-frontend that is built with React 19, TypeScript on Vite
 
-For both parts you will find a README.md inside each directory with steps on how to run them.
+> **Note:** For both parts you will find a README.md inside each directory with steps on how to run them.
+- <a href="dashboard-frontend/README.MD" title="Frontend readme" target="_blank">Frontend readme</a>
+- <a href="dashboard-backend/README.MD" title="Backend readme" target="_blank">Backend readme</a>
+
+> **Note:** Database is seeded with 10 transaction and one user on the first backend run
+
+> **Important:** Login details of the created user: test@test.com / emilyspass
+
 
 # Recomended environment
 - node v20.19.3 
 - npm 10.8.2
 
-> **Note:** Database is seeded with 10 transaction and one user on the first backend run
-> **Note:** Login details of the created user: test@test.com / emilyspass
 
 # Preview
 <table>
