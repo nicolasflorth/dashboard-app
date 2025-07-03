@@ -1,4 +1,4 @@
-# This projects has 2 sides
+# This project has 2 sides
 - dashboard-frontend - built with React 19, TypeScript, and Vite
 - dashboard-backend - powered by Express.js and connected to a MongoDB database using Mongoose
 
