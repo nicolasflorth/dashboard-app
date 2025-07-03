@@ -52,9 +52,15 @@
         }
     }
 
-    :global(.rdt .form-control) {
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: rem(8) rem(10);
-    }
+}
+:global(.rdt) {
+    color: var(--color104);
+}
+:global(.rdt .form-control) {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: rem(8) rem(10);
+}
+[data-theme='dark'] :global(.rdt) {
+    color: var(--color102);
 }
