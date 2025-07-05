@@ -14,6 +14,7 @@ router.get('/:userId/transactions', async (req, res) => {
     }
 });
 
+// Create a new transaction
 router.post('/:userId/transactions', async (req, res) => {
     console.log('Received data:', req.body);
     const { userId } = req.params;
@@ -34,6 +35,7 @@ router.post('/:userId/transactions', async (req, res) => {
     }
 });
 
+// Update a transaction
 router.put('/:userId/transactions/:id', async (req, res) => {
     const { userId } = req.params;
     const transaction = await Transaction.findOneAndUpdate(
@@ -45,6 +47,7 @@ router.put('/:userId/transactions/:id', async (req, res) => {
     res.json(transaction);
 });
 
+// Delete a transaction
 router.delete('/:userId/transactions/:id', async (req, res) => {
     const { userId } = req.params;
     const deleted = await Transaction.findOneAndDelete({ _id: req.params.id, userId });

@@ -4,7 +4,15 @@ import Logoutbutton from './LogoutButton'
 import { store } from '@/app/store'
 import { login } from '@/features/auth/authSlice'
 import userEvent from '@testing-library/user-event';
+import { vi } from 'vitest';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+const queryClient = new QueryClient();
 
+vi.mock('@/api/users', () => ({
+    api: {
+        logout: vi.fn().mockResolvedValue({}),
+    },
+}));
 
 describe('LogoutButton', () => {
     it('dispatches logout action when clicked', async () => {
@@ -22,7 +30,9 @@ describe('LogoutButton', () => {
 
         render(
             <Provider store={store}>
-                <Logoutbutton />
+                <QueryClientProvider client={queryClient}>
+                    <Logoutbutton />
+                </QueryClientProvider>
             </Provider>
         )
 

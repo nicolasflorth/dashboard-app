@@ -16,25 +16,46 @@ export const fetchTransactionsAsync = createAsyncThunk(
 
 export const createTransactionAsync = createAsyncThunk(
     'transactions/create',
-    async ({ userId, data }: { userId: string; data: Partial<TransactionType> }) => {
-        const response = await createTransaction(userId, data);
-        return response;
+    async (
+        { userId, data }: { userId: string; data: Partial<TransactionType> },
+        { rejectWithValue }
+    ) => {
+        try {
+            const response = await createTransaction(userId, data);
+            return response;
+        } catch (err: any) {
+            return rejectWithValue(err?.response?.data?.error || 'Update failed');
+        }
     }
 );
 
 export const updateTransactionAsync = createAsyncThunk(
     'transactions/update',
-    async ({ userId, transactionId, data }: { userId: string; transactionId: string; data: Partial<TransactionType> }) => {
-        const response = await updateTransaction(userId, transactionId, data);
-        return response;
+    async (
+        { userId, transactionId, data }: { userId: string; transactionId: string; data: Partial<TransactionType> },
+        { rejectWithValue }
+    ) => {
+        try {
+            const response = await updateTransaction(userId, transactionId, data);
+            return response;
+        } catch (err: any) {
+            return rejectWithValue(err?.response?.data?.error || 'Update failed');
+        }
     }
 );
 
 export const deleteTransactionAsync = createAsyncThunk(
     'transactions/delete',
-    async ({ userId, transactionId }: { userId: string; transactionId: string }) => {
-        await deleteTransaction(userId, transactionId); // your API function
-        return transactionId;
+    async (
+        { userId, transactionId }: { userId: string; transactionId: string },
+        { rejectWithValue }
+    ) => {
+        try {
+            await deleteTransaction(userId, transactionId); // your API function
+            return transactionId;
+        } catch (err: any) {
+            return rejectWithValue(err?.response?.data?.error || 'Update failed');
+        }
     }
 );
 
@@ -127,7 +148,7 @@ const transactionsSlice = createSlice({
             })
             .addCase(createTransactionAsync.rejected, (state, action) => {
                 state.create.loading = false;
-                state.create.error = action.error.message || 'Failed to create transaction';
+                state.create.error = action.payload as string || 'Failed to create transaction';
             })
 
 
@@ -150,7 +171,7 @@ const transactionsSlice = createSlice({
             })
             .addCase(updateTransactionAsync.rejected, (state, action) => {
                 state.update.loading = false;
-                state.update.error = action.error.message || 'Failed to update transaction';
+                state.update.error = action.payload as string || 'Unknown error';
             })
 
             // Update Transaction
@@ -170,7 +191,7 @@ const transactionsSlice = createSlice({
             })
             .addCase(deleteTransactionAsync.rejected, (state, action) => {
                 state.delete.loading = false;
-                state.delete.error = action.error.message || 'Failed to delete transaction';
+                state.delete.error = action.payload as string || 'Failed to delete transaction';
             });
 
 

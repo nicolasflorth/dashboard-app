@@ -12,6 +12,7 @@ import categoriesFiltersReducer from '@/features/budget-tracker/categoriesFilter
 import summaryReducer from '@/features/budget-tracker/summarySlice';
 import userEvent from '@testing-library/user-event';
 import { api } from '@/api/users';
+import type { Mock } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const queryClient = new QueryClient();
 
@@ -36,7 +37,7 @@ vi.mock('react-router-dom', async () => {
 	};
 });
 
-vi.mock('@/api/apiFacade', () => ({
+vi.mock('@/api/users', () => ({
 	api: {
 		login: vi.fn(),
 	},
@@ -100,8 +101,8 @@ describe('LoginPage', () => {
 	});
 
 	it('submits successfully and navigates on valid input', async () => {
-		(api.login as ReturnType<typeof vi.fn>).mockResolvedValue({
-			id: 1,
+		(api.login as Mock).mockResolvedValue({
+			_id: 1,
 			email: 'test@test.com',
 			roles: ['user'],
 			accessToken: 'fake-token',
@@ -131,7 +132,7 @@ describe('LoginPage', () => {
 		});
 	});
 	it('shows error and does not authenticate on invalid credentials', async () => {
-		(api.login as ReturnType<typeof vi.fn>).mockRejectedValue({
+		(api.login as Mock).mockRejectedValue({
 			response: {
 				data: {
 					message: 'Invalid credentials',
