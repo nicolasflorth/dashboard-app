@@ -148,7 +148,7 @@ const transactionsSlice = createSlice({
             })
             .addCase(createTransactionAsync.rejected, (state, action) => {
                 state.create.loading = false;
-                state.create.error = action.payload as string || 'Failed to create transaction';
+                state.create.error = action.payload  as string || 'Failed to create transaction';
             })
 
 
