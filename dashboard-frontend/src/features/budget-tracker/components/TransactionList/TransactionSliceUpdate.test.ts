@@ -37,6 +37,7 @@ describe('TransactionSliceUpdate', () => {
 			type: 'Expense',
 			category: 'Groceries',
 			dateTime: '2025-01-02T00:00:00.000Z',
+			userId: 'user1'
 		};
 
 		const newState = reducer(initialState, {
@@ -77,6 +78,7 @@ describe('TransactionSliceUpdate', () => {
 			type: 'Expense',
 			category: 'Car Repair',
 			dateTime: '2025-01-03T00:00:00.000Z',
+			userId: 'user1'
 		};
 
 		const newState = reducer(initialState, {

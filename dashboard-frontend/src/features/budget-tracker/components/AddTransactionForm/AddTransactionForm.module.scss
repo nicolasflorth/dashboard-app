@@ -64,3 +64,12 @@
 [data-theme='dark'] :global(.rdt) {
     color: var(--color102);
 }
+.errorBox {
+    color: var(--color502);
+    background: var(--color501);
+    padding: rem(10);
+    border-radius: 4px;
+    margin-top: rem(10);
+    font-size: rem(14);
+    font-weight: 500;
+}

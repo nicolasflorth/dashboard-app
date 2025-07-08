@@ -19,6 +19,10 @@ router.post('/:userId/transactions', async (req, res) => {
     console.log('Received data:', req.body);
     const { userId } = req.params;
     console.log('POST /users/:userId/transactions called with ID:', userId);
+    
+    // Simulate a forced error
+    //return res.status(400).json({ error: 'API error from backend' });
+
     const { amount, type, category, dateTime } = req.body;
     try {
         const newTransaction = new Transaction({

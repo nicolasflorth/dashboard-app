@@ -6,4 +6,5 @@ export interface TransactionType {
     type: TransactionTypeEnum;
     category: string;
     dateTime: string;
+    userId: string;
 }

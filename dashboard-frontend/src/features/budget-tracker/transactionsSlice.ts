@@ -14,20 +14,23 @@ export const fetchTransactionsAsync = createAsyncThunk(
     }
 );
 
-export const createTransactionAsync = createAsyncThunk(
+export const createTransactionAsync = createAsyncThunk<
+    TransactionType,
+    { userId: string; data: Partial<TransactionType> },
+    { rejectValue: string }
+>(
     'transactions/create',
-    async (
-        { userId, data }: { userId: string; data: Partial<TransactionType> },
-        { rejectWithValue }
-    ) => {
+    async ({ userId, data }, { rejectWithValue }) => {
         try {
             const response = await createTransaction(userId, data);
             return response;
-        } catch (err: any) {
-            return rejectWithValue(err?.response?.data?.error || 'Update failed');
+        } catch (error: any) {
+            return rejectWithValue(error?.response?.data?.error || 'Unknown error');
+
         }
     }
 );
+
 
 export const updateTransactionAsync = createAsyncThunk(
     'transactions/update',
@@ -38,8 +41,8 @@ export const updateTransactionAsync = createAsyncThunk(
         try {
             const response = await updateTransaction(userId, transactionId, data);
             return response;
-        } catch (err: any) {
-            return rejectWithValue(err?.response?.data?.error || 'Update failed');
+        } catch (error: any) {
+            return rejectWithValue(error?.response?.data?.error || 'Update failed');
         }
     }
 );
@@ -53,8 +56,8 @@ export const deleteTransactionAsync = createAsyncThunk(
         try {
             await deleteTransaction(userId, transactionId); // your API function
             return transactionId;
-        } catch (err: any) {
-            return rejectWithValue(err?.response?.data?.error || 'Update failed');
+        } catch (error: any) {
+            return rejectWithValue(error?.response?.data?.error || 'Update failed');
         }
     }
 );
@@ -74,11 +77,11 @@ type TransactionsState = {
         loading: boolean;
         error: string | null;
     };
-    update: {
+    create: {
         loading: boolean;
         error: string | null;
     };
-    create: {
+    update: {
         loading: boolean;
         error: string | null;
     };
@@ -109,7 +112,16 @@ const transactionsSlice = createSlice({
         sortTransactionsByDateTime: (state, action: PayloadAction<'asc' | 'desc'>) => {
             state.sortOrder = action.payload;
             state.transactionsList = sortTransactions([...state.transactionsList], state.sortOrder);
-        }
+        },
+        clearCreateError(state) {
+            state.create.error = null;
+        },
+        clearUpdateError(state) {
+            state.update.error = null;
+        },
+        clearDeleteError(state) {
+            state.delete.error = null;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -148,7 +160,7 @@ const transactionsSlice = createSlice({
             })
             .addCase(createTransactionAsync.rejected, (state, action) => {
                 state.create.loading = false;
-                state.create.error = action.payload  as string || 'Failed to create transaction';
+                state.create.error = (action.payload as string) || 'Unknown error';
             })
 
 
@@ -171,7 +183,7 @@ const transactionsSlice = createSlice({
             })
             .addCase(updateTransactionAsync.rejected, (state, action) => {
                 state.update.loading = false;
-                state.update.error = action.payload as string || 'Unknown error';
+                state.update.error = (action.payload as string) || 'Unknown error';
             })
 
             // Update Transaction
@@ -191,14 +203,20 @@ const transactionsSlice = createSlice({
             })
             .addCase(deleteTransactionAsync.rejected, (state, action) => {
                 state.delete.loading = false;
-                state.delete.error = action.payload as string || 'Failed to delete transaction';
+                state.delete.error = (action.payload as string) || 'Failed to delete transaction';
             });
 
 
     }
 });
 
-export const { sortTransactionsByDateTime } = transactionsSlice.actions;
+export const {
+    sortTransactionsByDateTime,
+    clearCreateError,
+    clearUpdateError,
+    clearDeleteError 
+} = transactionsSlice.actions;
+
 export default transactionsSlice.reducer;
 
 export const selectTransactions = (state: RootState) => state.transactions.transactionsList;
@@ -219,4 +237,3 @@ export const selectTotalIncomes = createSelector(
             .filter((txn) => txn.type === 'Income')
             .reduce((sum, txn) => sum + txn.amount, 0)
 );
-

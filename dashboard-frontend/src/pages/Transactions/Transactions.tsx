@@ -1,4 +1,3 @@
-// src/pages/HomePage.tsx
 import { useState, lazy, Suspense } from 'react';
 import AddTransactionForm from "@/features/budget-tracker/components/AddTransactionForm/AddTransactionForm";
 import CategoriesFilters from "@/features/budget-tracker/components/CategoryFilter/CategoriesFilters";
@@ -7,7 +6,6 @@ import Summary from "@/features/budget-tracker/components/Summary/Summary";
 const Popup = lazy(() => import('@/shared/components/Popup/Popup'));
 import { renderLoader } from '@/shared/components/Loader/Loader';
 import styles from './Transactions.module.scss';
-import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/shared/components/Breadcrumbs/Breadcrumbs';
 
 function Transactions() {

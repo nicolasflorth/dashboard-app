@@ -9,7 +9,7 @@ type PopupProps = {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
-    if (!open) return null;
+    if (!isOpen) return null;
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
