@@ -1,0 +1,26 @@
+{
+    "language": "Sprache",
+    "home": "Heim",
+    "dashboard": "Armaturenbrett",
+    "transaction": "Transaktion",
+    "transactions": "Transaktionen",
+    "expense": "Kosten",
+    "expenses": "Kosten",
+    "income": "Einkommen",
+    "incomes": "Einkommen",
+    "add": "Hinzufügen",
+    "totaling": "insgesamt",
+    "summary": "Zusammenfassung",
+    "settings": "Einstellungen",
+    "breadcrumbs": {
+        "home": "Heim",
+        "dashboard": "Armaturenbrett",
+        "transactions": "Transaktionen"
+    },
+    "login": "Login",
+    "logout": "Ausloggen",
+    "loggingOut": "Abmelden...",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "light/dark": "Hell-/Dunkelmodus"
+}

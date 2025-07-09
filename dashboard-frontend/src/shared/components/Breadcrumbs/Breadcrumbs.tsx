@@ -1,24 +1,29 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss'
 import { capitalize } from '@/utils/capitalise';
+import { useTranslation } from "react-i18next";
 
 export default function Breadcrumbs() {
+	const { t } = useTranslation();
 	const location = useLocation();
 	const pathnames = location.pathname.split('/').filter(Boolean);
 
 	return (
 		<nav className={styles.breadcrumb} aria-label="breadcrumb">
-			<Link to="/">Home</Link>&gt;
+			<Link to="/">{t('breadcrumbs.home')}</Link>&gt;
 			{pathnames.map((value, index) => {
 				const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 				const isLast = index === pathnames.length - 1;
+
+				const label = t(`breadcrumbs.${value}`, capitalize(value)); // fallback to capitalized path
+
 				return (
 					<span key={index}>
 						{isLast ? (
-							<span>{capitalize(decodeURIComponent(value))}</span>
+							<span>{label}</span>
 						) : (
 							<>
-								<Link to={to}>{capitalize(decodeURIComponent(value))}</Link>
+								<Link to={to}>{label}</Link>
 								&gt;
 							</>
 						)}

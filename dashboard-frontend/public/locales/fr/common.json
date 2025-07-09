@@ -1,0 +1,26 @@
+{
+    "language": "Langue",
+    "home": "Maison",
+    "dashboard": "Tableau de bord",
+    "transaction": "Transaction",
+    "transactions": "Transactions",
+    "expense": "Dépense",
+    "expenses": "Dépenses",
+    "income": "Revenu",
+    "incomes": "Revenus",
+    "add": "Ajouter",
+    "totaling": "totalisant",
+    "summary": "Résumé",
+    "settings": "Paramètres",
+    "breadcrumbs": {
+        "home": "Maison",
+        "dashboard": "Tableau de bord",
+        "transactions": "Transactions"
+    },
+    "login": "Se connecter",
+    "logout": "Déconnexion",
+    "loggingOut": "Déconnexion...",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "light/dark": "Mode clair/sombre"
+}

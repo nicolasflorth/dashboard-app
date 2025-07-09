@@ -8,12 +8,14 @@ import { selectUser } from '@/features/auth/authSlice';
 import { User } from '@/types/user';
 import ConfirmDeleteDialog from '@/shared/components/ConfirmDeleteDialog/ConfirmDeleteDialog';
 import { useConfirmDelete } from '@/hooks/useConfirmDelete';
+import { useTranslation } from "react-i18next";
 
 type TransactionList = {
 	handleTransactionId: (id: string) => void;
 };
 
 const TransactionList: React.FC<TransactionList> = ({ handleTransactionId }) => {
+	const { t } = useTranslation(["common", "features/transactions/list"]);
 	const dispatch = useAppDispatch();
 	const transactions = useAppSelector(selectTransactions);
 	const user = useAppSelector(selectUser) as User | null;
@@ -50,10 +52,10 @@ const TransactionList: React.FC<TransactionList> = ({ handleTransactionId }) => 
 			) : (
 				<div className={styles.transactionTable}>
 					<div className={styles.listHeader}>
-						<div className={styles.type}>Type</div>
-						<div className={styles.amount}>Amount</div>
-						<div className={styles.category}>Category</div>
-						<div className={styles.dateTime}>Date</div>
+						<div className={styles.type}>{t("type", { ns: "features/transactions/list"})}</div>
+						<div className={styles.amount}>{t("amount", { ns: "features/transactions/list"})}</div>
+						<div className={styles.category}>{t("category", { ns: "features/transactions/list"})}</div>
+						<div className={styles.dateTime}>{t("date", { ns: "features/transactions/list"})}</div>
 					</div>
 					{transactions.map((tx: TransactionType) => (
 						<div
@@ -65,8 +67,8 @@ const TransactionList: React.FC<TransactionList> = ({ handleTransactionId }) => 
 							<div className={styles.category}>{tx.category}</div>
 							<div className={styles.dateTime}>{moment(tx.dateTime).format('DD/MM/YYYY HH:mm')}</div>
 							<div className={styles.action}>
-								<button onClick={() => handleTransactionId(tx._id)}>Edit</button>
-								<button onClick={() => requestDelete(tx._id)}>Delete</button>
+								<button onClick={() => handleTransactionId(tx._id)}>{t("edit", "common")}</button>
+								<button onClick={() => requestDelete(tx._id)}>{t("delete", "common")}</button>
 							</div>
 						</div>
 					))}

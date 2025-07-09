@@ -3,8 +3,10 @@ import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
+import { useTranslation } from "react-i18next";
 
 const ThemeToggle = () => {
+	const { t } = useTranslation();
 	const { theme, toggleTheme } = useTheme();
 
 	const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -67,7 +69,7 @@ const ThemeToggle = () => {
 		<FormGroup>
 			<FormControlLabel onClick={toggleTheme}
 				control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked={theme === 'dark'} />}
-				label="Light/Dark Mode"
+				label={t("light/dark")}
 			/>
 		</FormGroup>
 	);

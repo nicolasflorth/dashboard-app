@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 import { useAppSelector } from '@/app/hooks';
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+    const { t } = useTranslation();
 
     const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 
@@ -11,7 +13,7 @@ const Navbar = () => {
             <ul className={styles.navList}>
                 <li>
                     <NavLink to="/" className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}>
-                        Home
+                        {t("home")}
                     </NavLink>
                 </li>
                 {
@@ -19,7 +21,7 @@ const Navbar = () => {
                     <>
                         <li>
                             <NavLink to="/dashboard" className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}>
-                                Dashboard
+                                {t("dashboard")}
                             </NavLink>
                         </li>
                     </>
@@ -28,7 +30,7 @@ const Navbar = () => {
                     !isAuthenticated &&
                     <li className={styles.navItem}>
                         <NavLink to="/login" className={({ isActive }) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}>
-                            Login
+                            {t("login")}
                         </NavLink>
                     </li>
                 }

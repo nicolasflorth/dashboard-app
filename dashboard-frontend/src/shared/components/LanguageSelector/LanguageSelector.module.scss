@@ -1,0 +1,14 @@
+.selectWrapper {
+  max-width: 120px;
+  font-size: 14px;
+
+  :global(.MuiSelect-select) {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+
+  :global(.MuiInputBase-root) {
+    font-size: 14px;
+    min-height: 36px;
+  }
+}

@@ -1,0 +1,26 @@
+{
+    "language": "Idioma",
+    "home": "Hogar",
+    "dashboard": "Panel",
+    "transaction": "Transacción",
+    "transactions": "Transacciones",
+    "expense": "Gasto",
+    "expenses": "Gastos",
+    "income": "Ingreso",
+    "incomes": "Ingresos",
+    "add": "Agregar",
+    "totaling": "totalizando",
+    "summary": "Resumen",
+    "settings": "Ajustes",
+    "breadcrumbs": {
+        "home": "Hogar",
+        "dashboard": "Panel",
+        "transactions": "Transacciones"
+    },
+    "login": "Acceso",
+    "logout": "Cerrar sesión",
+    "loggingOut": "Cerrando sesión...",
+    "edit": "Editar",
+    "delete": "Borrar",
+    "light/dark": "Modo claro/oscuro"
+}

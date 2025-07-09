@@ -21,6 +21,8 @@
 - Axios
 - JWT
 - Vitest
+- Translation with i18next and lazy loaded files
+- Light/Dark theme
 
 
 # Recomended environment
@@ -71,6 +73,9 @@
       </a>
     </td>
     <td>
+      <a href="images/translation-min.jpg" target="_blank">
+        <img src="images/translation-min.jpg" alt="Translation" width="250" style="margin:10px;" />
+      </a>
     </td>
     <td>
     </td>

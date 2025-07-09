@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { RootState } from "@/app/store";
 import Navbar from "@/shared/components/Navbar/Navbar";
 import ErrorBoundary from '@/shared/components/ErrorBoundary';
+import LanguageSelector from '@/shared/components/LanguageSelector/LanguageSelector';
 
 const Header = () => {
 
@@ -12,6 +13,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <ErrorBoundary>
+                <LanguageSelector />
                 <Navbar />
             </ErrorBoundary>
             {isAuthenticated && <LogoutButton />}

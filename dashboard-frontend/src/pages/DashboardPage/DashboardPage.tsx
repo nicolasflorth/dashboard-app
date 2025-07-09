@@ -9,8 +9,10 @@ import Summary from '@/features/budget-tracker/components/Summary/Summary';
 import { PieChart } from '@mui/x-charts/PieChart';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
 import { useFetchTransactions } from '@/hooks/useFetchTransactions';
+import { useTranslation } from "react-i18next";
 
 function DashboardPage() {
+	const { t } = useTranslation();
 	const totalExpenses = useSelector<RootState, number>(selectTotalExpenses);
 	const totalIncomes = useSelector<RootState, number>(selectTotalIncomes);
 	const location = useLocation();
@@ -23,20 +25,20 @@ function DashboardPage() {
 		<main className="">
 
 			<div className={styles.app}>
-				<h1 className={styles.pageTitle}>Dashboard</h1>
+				<h1 className={styles.pageTitle}>{t("dashboard")}</h1>
 				<Outlet />
 				<div className={styles.widgets}>
 					<div className={styles.widget}>
 						<Link to="transactions">
-							<h2>Transactions</h2>
+							<h2>{t("transactions")}</h2>
 							<Summary variant="dashboard" />
 							<div className={styles.chart}>
 								<PieChart
 									series={[
 										{
 											data: [
-												{ id: 0, value: totalExpenses, label: 'Expenses' },
-												{ id: 1, value: totalIncomes, label: 'Incomes' }
+												{ id: 0, value: totalExpenses, label: t("expenses") },
+												{ id: 1, value: totalIncomes, label: t("incomes") }
 											],
 										},
 									]}

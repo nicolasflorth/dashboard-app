@@ -10,6 +10,7 @@ import { Moment } from 'moment';
 import { selectUser } from '@/features/auth/authSlice';
 import { User } from '@/types/user';
 import type { RootState } from '@/app/store';
+import { useTranslation } from "react-i18next";
 
 type AddTransactionFormProps = {
     onSuccess: () => void;
@@ -17,6 +18,7 @@ type AddTransactionFormProps = {
 }
 
 const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onSuccess, transactionId }) => {
+    const { t } = useTranslation("features/transactions/form");
     const dispatch = useAppDispatch();
     const transactions = useAppSelector(selectTransactions);
     const createError = useAppSelector((state: RootState) => state.transactions.create.error);
@@ -141,7 +143,7 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onSuccess, tran
 
     return (
         <div className={styles.addTransactions}>
-            <h2>{editingTransaction ? 'Edit Transaction' : 'Add Transaction'}</h2>
+            <h2>{editingTransaction ? t("editTitle") : t("addTitle")}</h2>
             <form onSubmit={handleSubmit} className={styles.addTransactionForm}>
                 <input
                     type="text"

@@ -1,0 +1,26 @@
+{
+    "language": "Language",
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "transaction": "Transaction",
+    "transactions": "Transactions",
+    "expense": "Expense",
+    "expenses": "Expenses",
+    "income": "Income",
+    "incomes": "Incomes",
+    "add": "Add",
+    "totaling": "totaling",
+    "summary": "Summary",
+    "settings": "Settings",
+    "breadcrumbs": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "transactions": "Transactions"
+    },
+    "login": "Login",
+    "logout": "Logout",
+    "loggingOut": "Logging out...",
+    "edit": "Edit",
+    "delete": "Delete",
+    "light/dark": "Light/Dark Mode"
+}
