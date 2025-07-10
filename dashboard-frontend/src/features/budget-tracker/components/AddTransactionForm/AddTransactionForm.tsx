@@ -18,7 +18,7 @@ type AddTransactionFormProps = {
 }
 
 const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onSuccess, transactionId }) => {
-    const { t } = useTranslation("features/transactions/form");
+    const { t } = useTranslation(["common", "features/transactions/list"]);
     const dispatch = useAppDispatch();
     const transactions = useAppSelector(selectTransactions);
     const createError = useAppSelector((state: RootState) => state.transactions.create.error);
@@ -143,23 +143,23 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onSuccess, tran
 
     return (
         <div className={styles.addTransactions}>
-            <h2>{editingTransaction ? t("editTitle") : t("addTitle")}</h2>
+            <h2>{editingTransaction ? t("edit") : t("add")} {t("transaction")}</h2>
             <form onSubmit={handleSubmit} className={styles.addTransactionForm}>
                 <input
                     type="text"
-                    placeholder="Amount"
+                    placeholder={t("amount", { ns: "features/transactions/list"})}
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                 />
                 <input
                     type="text"
-                    placeholder="Category"
+                    placeholder={t("category", { ns: "features/transactions/list"})}
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                 />
                 <select className={styles.type} value={type} onChange={(e) => setType(e.target.value as 'Income' | 'Expense')}>
-                    <option value="Income">Income</option>
-                    <option value="Expense">Expense</option>
+                    <option value="Income">{t("income")}</option>
+                    <option value="Expense">{t("expense")}</option>
                 </select>
                 {isEditing &&
                     <Datetime
@@ -169,7 +169,7 @@ const AddTransactionForm: React.FC<AddTransactionFormProps> = ({ onSuccess, tran
                         timeFormat="HH:mm"
                     />
                 }
-                <button type="submit" data-testid="transaction-form-submit">{isEditing ? 'Save' : 'Add'}</button>
+                <button type="submit" data-testid="transaction-form-submit">{isEditing ? t("save") : t("add")}</button>
             </form>
             {(createError || updateError || deleteError) && (
                 <div className={styles.errorBox} data-testid="transaction-error">

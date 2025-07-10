@@ -6,6 +6,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import './ConfirmDeleteDialog.module.scss';
+import { useTranslation } from "react-i18next";
 
 type ConfirmDeleteDialogProps = {
 	open: boolean;
@@ -17,21 +18,24 @@ const ConfirmDeleteDialog: React.FC<ConfirmDeleteDialogProps> = ({
 	open,
 	onCancel,
 	onConfirm,
-}) => (
-	<Dialog open={open} onClose={onCancel}>
-		<DialogTitle>Confirm Deletion</DialogTitle>
-		<DialogContent>
-			<DialogContentText>
-				Are you sure you want to delete this transaction?
-			</DialogContentText>
-		</DialogContent>
-		<DialogActions>
-			<Button onClick={onCancel}>Cancel</Button>
-			<Button onClick={onConfirm} color="error" variant="contained">
-				Delete
-			</Button>
-		</DialogActions>
-	</Dialog>
-);
+}) => {
+	const { t } = useTranslation(["common", "features/transactions/list"]);
+	return (
+		<Dialog open={open} onClose={onCancel}>
+			<DialogTitle>{t("confirmDeletion", { ns: "features/transactions/list"})}</DialogTitle>
+			<DialogContent>
+				<DialogContentText>
+					{t("confirmDeletionQuestion", { ns: "features/transactions/list"})}
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={onCancel}>{t("cancel", { ns: "common"})}</Button>
+				<Button onClick={onConfirm} color="error" variant="contained">
+					{t("delete", { ns: "common"})}
+				</Button>
+			</DialogActions>
+		</Dialog>
+	)
+};
 
 export default ConfirmDeleteDialog;

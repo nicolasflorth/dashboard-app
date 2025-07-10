@@ -2,5 +2,7 @@
     "type": "Tipo",
     "amount": "Cantidad",
     "category": "Categoría",
-    "date": "Fecha"
+    "date": "Fecha",
+    "confirmDeletion": "Confirmar eliminación",
+    "confirmDeletionQuestion": "Está seguro de que desea eliminar esta transacción?"
 }

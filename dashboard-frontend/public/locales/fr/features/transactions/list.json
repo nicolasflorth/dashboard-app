@@ -2,5 +2,7 @@
     "type": "Taper",
     "amount": "Montante",
     "category": "Catégorie",
-    "date": "Date"
+    "date": "Date",
+    "confirmDeletion": "Confirmer la suppression",
+    "confirmDeletionQuestion": "Êtes-vous sûr de vouloir supprimer cette transaction?"
 }

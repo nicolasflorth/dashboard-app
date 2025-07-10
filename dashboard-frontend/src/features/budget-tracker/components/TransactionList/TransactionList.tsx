@@ -62,7 +62,7 @@ const TransactionList: React.FC<TransactionList> = ({ handleTransactionId }) => 
 							className={`${styles.transactionItem} ${tx.type === 'Expense' ? styles.expense : styles.income}`}
 							key={tx._id}
 						>
-							<div className={styles.type}><span>{tx.type}</span></div>
+							<div className={styles.type}><span>{tx.type === 'Expense' ? t("expense") : t("income")}</span></div>
 							<div className={styles.amount}>{tx.amount}</div>
 							<div className={styles.category}>{tx.category}</div>
 							<div className={styles.dateTime}>{moment(tx.dateTime).format('DD/MM/YYYY HH:mm')}</div>

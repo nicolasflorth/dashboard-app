@@ -8,7 +8,6 @@
     "expenses": "Expenses",
     "income": "Income",
     "incomes": "Incomes",
-    "add": "Add",
     "totaling": "totaling",
     "summary": "Summary",
     "settings": "Settings",
@@ -20,7 +19,11 @@
     "login": "Login",
     "logout": "Logout",
     "loggingOut": "Logging out...",
+    "add": "Add",
     "edit": "Edit",
     "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
     "light/dark": "Light/Dark Mode"
 }

@@ -2,5 +2,7 @@
     "type": "Type",
     "amount": "Amount",
     "category": "Category",
-    "date": "Date"
+    "date": "Date",
+    "confirmDeletion": "Confirm Deletion",
+    "confirmDeletionQuestion": "Are you sure you want to delete this transaction?"
 }

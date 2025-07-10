@@ -2,5 +2,7 @@
     "type": "Typ",
     "amount": "Menge",
     "category": "Kategorie",
-    "date": "Datum"
+    "date": "Datum",
+    "confirmDeletion": "Löschung bestätigen",
+    "confirmDeletionQuestion": "Möchten Sie diese Transaktion wirklich löschen?"
 }

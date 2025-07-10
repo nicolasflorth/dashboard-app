@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import styles from './Popup.module.scss'
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from "react-i18next";
 
 type PopupProps = {
     isOpen: boolean;
@@ -9,6 +10,7 @@ type PopupProps = {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
+	const { t } = useTranslation();
     if (!isOpen) return null;
 
     useEffect(() => {
@@ -43,7 +45,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
                         exit={{ scale: 0.9, opacity: 0 }}
                         transition={{ duration: 0.2 }}
                     >
-                        <button className={styles.close} onClick={onClose}>Close</button>
+                        <button className={styles.close} onClick={onClose}>{t("close")}</button>
                         {children}
                     </motion.div>
                 </motion.div>

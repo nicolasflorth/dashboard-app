@@ -8,7 +8,6 @@
     "expenses": "Kosten",
     "income": "Einkommen",
     "incomes": "Einkommen",
-    "add": "Hinzufügen",
     "totaling": "insgesamt",
     "summary": "Zusammenfassung",
     "settings": "Einstellungen",
@@ -20,7 +19,11 @@
     "login": "Login",
     "logout": "Ausloggen",
     "loggingOut": "Abmelden...",
+    "add": "Hinzufügen",
     "edit": "Bearbeiten",
     "delete": "Löschen",
+    "cancel": "Stornieren",
+    "save": "Speichern",
+    "close": "Schließen",
     "light/dark": "Hell-/Dunkelmodus"
 }

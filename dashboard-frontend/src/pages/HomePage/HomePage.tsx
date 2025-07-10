@@ -1,23 +1,25 @@
 import { Link } from 'react-router-dom';
 import { RootState } from "@/app/store";
 import { useSelector } from 'react-redux'
+import { useTranslation } from "react-i18next";
 
 function HomePage() {
+	const { t } = useTranslation(["common", "pages/home"]);
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
 	return (
 		<main>
 
 			<div>
-				<h1>Welcome to My App</h1>
-				<p>This is the home page. Feel free to explore!</p>
+				<h1>{t("title", { ns: "pages/home"})}</h1>
+				<p>{t("p1", { ns: "pages/home"})}</p>
 
 				{isAuthenticated &&
-					<p>As you are Logedin you can access the <Link
+					<p>{t("p2", { ns: "pages/home"})}<Link
 						to="/dashboard"
 						className=""
 					>
-						Dashboard
+						{t("dashboard", { ns: "common"})}
 					</Link></p>
 				}
 

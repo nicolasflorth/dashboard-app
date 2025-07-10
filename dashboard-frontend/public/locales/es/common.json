@@ -8,7 +8,6 @@
     "expenses": "Gastos",
     "income": "Ingreso",
     "incomes": "Ingresos",
-    "add": "Agregar",
     "totaling": "totalizando",
     "summary": "Resumen",
     "settings": "Ajustes",
@@ -20,7 +19,11 @@
     "login": "Acceso",
     "logout": "Cerrar sesión",
     "loggingOut": "Cerrando sesión...",
+    "add": "Agregar",
     "edit": "Editar",
     "delete": "Borrar",
+    "cancel": "Cancelar",
+    "save": "Ahorrar",
+    "close": "Cerca",
     "light/dark": "Modo claro/oscuro"
 }

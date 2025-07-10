@@ -8,7 +8,6 @@
     "expenses": "Dépenses",
     "income": "Revenu",
     "incomes": "Revenus",
-    "add": "Ajouter",
     "totaling": "totalisant",
     "summary": "Résumé",
     "settings": "Paramètres",
@@ -20,7 +19,11 @@
     "login": "Se connecter",
     "logout": "Déconnexion",
     "loggingOut": "Déconnexion...",
+    "add": "Ajouter",
     "edit": "Modifier",
     "delete": "Supprimer",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "close": "Fermer",
     "light/dark": "Mode clair/sombre"
 }
