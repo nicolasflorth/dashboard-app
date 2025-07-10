@@ -1,14 +1,57 @@
+@use '~/styles/utils' as *;
+
 .selectWrapper {
-  max-width: 120px;
-  font-size: 14px;
+	max-width: 120px;
+	font-size: 14px;
 
-  :global(.MuiSelect-select) {
-    padding: 4px 8px;
-    font-size: 14px;
-  }
+	:global(.MuiInputBase-root) {
+		color: var(--color104);
+		border-color: var(--color104);
+	}
 
-  :global(.MuiInputBase-root) {
-    font-size: 14px;
-    min-height: 36px;
-  }
+	:global(.MuiOutlinedInput-notchedOutline) {
+		border-color: var(--color104);
+	}
+
+	:global(.MuiOutlinedInput-notchedOutline) {
+		border-color: var(--color104);
+	}
+
+	:global(.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline) {
+		border-color: var(--color105);
+	}
+
+	:global(.MuiFormLabel-root) {
+		color: var(--color104);
+	}
+
+	:global(.MuiFormLabel-root.Mui-focused) {
+		color: var(--color101);
+	}
+
+	:global(.MuiSelect-select) {
+		padding: 4px 8px;
+		font-size: 14px;
+	}
+
+	:global(.MuiInputBase-root) {
+		font-size: 14px;
+		min-height: 36px;
+	}
+}
+
+:global(.MuiPaper-root ) {
+	left: 10px !important;
+}
+
+:global(.MuiPaper-root.MuiPaper-root) {
+	background-color: var(--color103);
+}
+
+:global(.MuiList-root) {
+	color: var(--color104);
+}
+
+:global(.MuiSelect-icon) {
+	fill: var(--color104) !important;
 }

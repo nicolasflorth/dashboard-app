@@ -39,6 +39,12 @@
 		margin-top: 20px;
 		display: flex;
 		justify-content: center;
+		aspect-ratio: 16 / 9;
+  		max-height: 90vh;
+		
+		:global(.MuiChartsWrapper-root) {
+			max-height: 100%;
+		}
 
 		:global(.MuiChartsLegend-root) {
 			max-width: 80px;
