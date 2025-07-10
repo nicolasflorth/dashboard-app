@@ -25,5 +25,15 @@
     "cancel": "Cancelar",
     "save": "Ahorrar",
     "close": "Cerca",
-    "light/dark": "Modo claro/oscuro"
+    "light/dark": "Modo claro/oscuro",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "submit": "Entregar",
+    "loading": "Cargando...",
+    "tryAgain": "Por favor, inténtelo de nuevo.",
+    "failed": "fallida",
+    "emailRequired": "Se requiere correo electrónico",
+    "invalidEmail": "Dirección de correo electrónico no válida",
+    "passwordRequired": "Se requiere contraseña",
+    "invalidPassword": "La contraseña debe tener al menos {{min}} caracteres."
 }

@@ -25,5 +25,15 @@
     "cancel": "Stornieren",
     "save": "Speichern",
     "close": "Schließen",
-    "light/dark": "Hell-/Dunkelmodus"
+    "light/dark": "Hell-/Dunkelmodus",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "submit": "Einreichen",
+    "loading": "Laden...",
+    "tryAgain": "Bitte versuchen Sie es erneut.",
+    "failed": "fehlgeschlagen",
+    "emailRequired": "E-Mail ist erforderlich",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "passwordRequired": "Passwort erforderlich",
+    "invalidPassword": "Das Passwort muss mindestens {{min}} Zeichen lang sein"
 }

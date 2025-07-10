@@ -25,5 +25,15 @@
     "cancel": "Cancel",
     "save": "Save",
     "close": "Close",
-    "light/dark": "Light/Dark Mode"
+    "light/dark": "Light/Dark Mode",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "tryAgain": "Please try again.",
+    "failed": "failed",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "invalidPassword": "Password must be at least {{min}} characters long"
 }

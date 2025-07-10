@@ -1,4 +1,5 @@
 import styles from '@/features/auth/styles/LoginPage.module.scss';
+import { useMemo, useEffect } from 'react';
 import { useAppSelector } from '@/app/hooks';
 import { useAppDispatch } from '@/app/hooks';
 import { useNavigate } from 'react-router-dom';
@@ -8,30 +9,40 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { login } from '@/features/auth/authSlice';
 import { useMutation, UseMutationResult } from '@tanstack/react-query';
 import { api } from '@/api/users';
-
-const schema = z.object({
-	email: z.string().nonempty("Email is required").email("Invalid email address"),
-	password: z.string().nonempty("Password is required").min(6, "Password must be at least 6 characters long"),
-});
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
 
 interface LoginResponse {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  roles: string[];
-  accessToken: string;
+	id: string;
+	firstName: string;
+	lastName: string;
+	email: string;
+	roles: string[];
+	accessToken: string;
 }
 
 interface LoginInput {
-  email: string;
-  password: string;
-  expiresInMins?: number;
+	email: string;
+	password: string;
+	expiresInMins?: number;
 }
 
-type FormFields = z.infer<typeof schema>;
+const createLoginSchema = (t: TFunction) =>
+	z.object({
+		email: z.string().nonempty(t("emailRequired")).email(t("invalidEmail")),
+		password: z
+			.string()
+			.nonempty(t("passwordRequired"))
+			.min(6, t("invalidPassword", { min: 6 })),
+	});
+
 
 function LoginPage() {
+	const { t, i18n } = useTranslation();
+
+	const schema = useMemo(() => createLoginSchema(t), [i18n.language]);
+	type FormFields = z.infer<typeof schema>;
+
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
@@ -41,14 +52,16 @@ function LoginPage() {
 		console.log(user.roles);
 	}
 
-	const { register,
+	const {
+		register,
 		handleSubmit,
 		setError,
+		reset,
 		formState: { errors, isSubmitting }
 	} = useForm<FormFields>({
 		defaultValues: {
-			email: "",//test@test.com
-			password: ""//emilyspass
+			email: '',
+			password: '',
 		},
 		resolver: zodResolver(schema),
 	});
@@ -71,7 +84,7 @@ function LoginPage() {
 		},
 		onError: (error: any) => {
 			setError("root", {
-				message: error?.response?.data?.message || error.message || 'Login failed. Please try again.',
+				message: error?.response?.data?.message || error.message || t("login") + ' ' + t("failed") + ' ' + t("tryAgain"),
 			});
 			console.error("Login error:", error?.response?.data?.message || error.message);
 		}
@@ -86,17 +99,24 @@ function LoginPage() {
 		console.log("Form validation errors:", errors);
 	};
 
+	useEffect(() => {
+	if (Object.keys(errors).length > 0) {
+		// clear errors when language changes
+		reset(undefined, { keepValues: true });
+	}
+	}, [i18n.language]);
+
 	return (
 		<main className={styles.loginForm}>
 			<div>
-				<h1>Login</h1>
+				<h1>{t("login")}</h1>
 				<form onSubmit={handleSubmit(onSubmit, onError)}>
-					<input {...register("email")} type="text" placeholder="Email" />
+					<input {...register("email")} type="text" placeholder={t("email")} />
 					{errors.email && <span className={styles.error}>{errors.email.message}</span>}
-					<input {...register("password")} type="password" placeholder="Password" />
+					<input {...register("password")} type="password" placeholder={t("password")} />
 					{errors.password && <span className={styles.error}>{errors.password.message}</span>}
 					<button disabled={loginMutation.status === "pending"} type="submit">
-						{loginMutation.status === "pending" ? "Loading..." : "Submit"}
+						{loginMutation.status === "pending" ? t("loading") : t("submit")}
 					</button>
 					{errors.root && <span className={styles.error}>{errors.root.message}</span>}
 				</form>

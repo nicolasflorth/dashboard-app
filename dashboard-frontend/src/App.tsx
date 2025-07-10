@@ -29,7 +29,17 @@ function App() {
 			<Routes>
 				{/* public routes */}
 				<Route path="/" element={<HomePage />} />
-				<Route path="/login" element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage />} />
+
+				<Route path="/login" element={
+					isAuthenticated 
+					? 
+					<Navigate to="/dashboard" /> 
+					: 
+					<Suspense fallback={renderLoader()}>
+						<LoginPage />
+					</Suspense>
+				} />
+
 
 				<Route element={<PersistLogin />}>
 					{/* protected routes - Require authentication + role */}

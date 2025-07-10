@@ -25,5 +25,15 @@
     "cancel": "Annuler",
     "save": "Sauvegarder",
     "close": "Fermer",
-    "light/dark": "Mode clair/sombre"
+    "light/dark": "Mode clair/sombre",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "submit": "Soumettre",
+    "loading": "Chargement...",
+    "tryAgain": "Veuillez réessayer.",
+    "failed": "échoué",
+    "emailRequired": "L'e-mail est obligatoire",
+    "invalidEmail": "Adresse e-mail invalide",
+    "passwordRequired": "Le mot de passe est requis",
+    "invalidPassword": "Le mot de passe doit comporter au moins {{min}} caractères"
 }
