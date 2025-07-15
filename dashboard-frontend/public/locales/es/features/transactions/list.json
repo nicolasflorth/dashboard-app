@@ -4,5 +4,6 @@
     "category": "Categoría",
     "date": "Fecha",
     "confirmDeletion": "Confirmar eliminación",
-    "confirmDeletionQuestion": "Está seguro de que desea eliminar esta transacción?"
+    "confirmDeletionQuestion": "Está seguro de que desea eliminar esta transacción?",
+    "noTransactions": "No se encontró ninguna transacción"
 }

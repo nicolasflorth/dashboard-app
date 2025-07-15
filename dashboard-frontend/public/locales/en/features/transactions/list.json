@@ -4,5 +4,6 @@
     "category": "Category",
     "date": "Date",
     "confirmDeletion": "Confirm Deletion",
-    "confirmDeletionQuestion": "Are you sure you want to delete this transaction?"
+    "confirmDeletionQuestion": "Are you sure you want to delete this transaction?",
+    "noTransactions": "No transaction found"
 }

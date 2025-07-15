@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import moment from 'moment';
 import styles from './TransactionList.module.scss';
+import { useReactTable, getCoreRowModel, flexRender, type ColumnDef, } from '@tanstack/react-table';
 import type { TransactionType } from '@/types/transaction';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { selectTransactions, deleteTransactionAsync } from '@/features/budget-tracker/transactionsSlice';
@@ -39,6 +40,50 @@ const TransactionList: React.FC<TransactionList> = ({ handleTransactionId }) => 
 		}
 	};
 
+	const columns = useMemo<ColumnDef<TransactionType>[]>(
+		() => [
+			{
+				header: t('type', { ns: 'features/transactions/list' }),
+				accessorKey: 'type',
+				cell: info => (
+					<span className={info.row.original.type === 'Expense' ? styles.expense : styles.income}>
+						{info.getValue() === 'Expense' ? t('expense') : t('income')}
+					</span>
+				),
+			},
+			{
+				header: t('amount', { ns: 'features/transactions/list' }),
+				accessorKey: 'amount',
+			},
+			{
+				header: t('category', { ns: 'features/transactions/list' }),
+				accessorKey: 'category',
+			},
+			{
+				header: t('date', { ns: 'features/transactions/list' }),
+				accessorKey: 'dateTime',
+				cell: info => moment(info.getValue() as string).format('DD/MM/YYYY HH:mm'),
+			},
+			{
+				header: '',
+				id: 'actions',
+				cell: ({ row }) => (
+					<div className={styles.action}>
+						<button onClick={() => handleTransactionId(row.original._id)}>{t('edit', { ns: 'common' })}</button>
+						<button onClick={() => requestDelete(row.original._id)}>{t('delete', { ns: 'common' })}</button>
+					</div>
+				),
+			},
+		],
+		[t, handleTransactionId, requestDelete]
+	);
+
+	const table = useReactTable({
+		data: transactions,
+		columns,
+		getCoreRowModel: getCoreRowModel(),
+	});
+
 	return (
 		<div className={styles.container}>
 			<ConfirmDeleteDialog
@@ -48,30 +93,33 @@ const TransactionList: React.FC<TransactionList> = ({ handleTransactionId }) => 
 			/>
 
 			{Array.isArray(transactions) && transactions.length === 0 ? (
-				<div className={styles.emptyList}>No transaction found</div>
+				<div className={styles.emptyList}>{t('noTransactions', { ns: 'features/transactions/list' })}</div>
 			) : (
 				<div className={styles.transactionTable}>
 					<div className={styles.listHeader}>
-						<div className={styles.type}>{t("type", { ns: "features/transactions/list"})}</div>
-						<div className={styles.amount}>{t("amount", { ns: "features/transactions/list"})}</div>
-						<div className={styles.category}>{t("category", { ns: "features/transactions/list"})}</div>
-						<div className={styles.dateTime}>{t("date", { ns: "features/transactions/list"})}</div>
+						{table.getHeaderGroups().map(headerGroup =>
+							headerGroup.headers.map(header => (
+								<div key={header.id} className={styles[header.column.id as keyof typeof styles]}>
+									{flexRender(header.column.columnDef.header, header.getContext())}
+								</div>
+							))
+						)}
 					</div>
-					{transactions.map((tx: TransactionType) => (
-						<div
-							className={`${styles.transactionItem} ${tx.type === 'Expense' ? styles.expense : styles.income}`}
-							key={tx._id}
-						>
-							<div className={styles.type}><span>{tx.type === 'Expense' ? t("expense") : t("income")}</span></div>
-							<div className={styles.amount}>{tx.amount}</div>
-							<div className={styles.category}>{tx.category}</div>
-							<div className={styles.dateTime}>{moment(tx.dateTime).format('DD/MM/YYYY HH:mm')}</div>
-							<div className={styles.action}>
-								<button onClick={() => handleTransactionId(tx._id)}>{t("edit", "common")}</button>
-								<button onClick={() => requestDelete(tx._id)}>{t("delete", "common")}</button>
+					<div className={styles.listBody}>
+						{table.getRowModel().rows.map(row => (
+							<div
+								key={row.id}
+								className={`${styles.transactionItem} ${row.original.type === 'Expense' ? styles.expense : styles.income
+									}`}
+							>
+								{row.getVisibleCells().map(cell => (
+									<div key={cell.id} className={styles[cell.column.id as keyof typeof styles]}>
+										{flexRender(cell.column.columnDef.cell, cell.getContext())}
+									</div>
+								))}
 							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</div>
 			)}
 		</div>
