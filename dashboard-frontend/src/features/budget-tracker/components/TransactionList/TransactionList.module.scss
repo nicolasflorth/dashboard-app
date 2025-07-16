@@ -120,7 +120,10 @@
 				display: flex;
 				align-items: center;
 				padding: 5px;
-				border-bottom: 1px solid #ccc;
+				border-bottom: 1px solid var(--color102);
+				&:last-child {
+					border-bottom: none;
+				}
 			}
 		}
 
@@ -135,7 +138,7 @@
 		.transactionItem {
 			display: flex;
 			flex-direction: column;
-			border: 1px solid #ccc;
+			border: 1px solid var(--color102);
 			padding: 10px;
 			justify-content: left;
 
@@ -145,18 +148,27 @@
 				display: flex;
 				justify-content: left;
 				align-items: center;
-				border-bottom: 1px solid #ccc;
 				padding: 5px;
 
-				&::before {
-					content: attr(data-label);
-					font-weight: bold;
-					margin-right: 1rem;
-				}
 				&.type {
 					span {
 						margin-left: 0px;
 					}
+				}
+				&:last-child {
+					border-bottom: none !important;
+				}
+			}
+
+			&:nth-child(odd) {
+				> div {
+					border-bottom: 1px solid var(--color103);
+				}
+			}
+
+			&:nth-child(even) {
+				> div {
+					border-bottom: 1px solid var(--color102);
 				}
 			}
 		}
