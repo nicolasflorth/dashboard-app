@@ -17,6 +17,7 @@
         "transactions": "Transaktionen"
     },
     "login": "Login",
+    "register": "Registrieren",
     "logout": "Ausloggen",
     "loggingOut": "Abmelden...",
     "add": "Hinzufügen",
@@ -28,6 +29,9 @@
     "light/dark": "Hell-/Dunkelmodus",
     "email": "E-Mail",
     "password": "Passwort",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "username": "Benutzername",
     "submit": "Einreichen",
     "loading": "Laden...",
     "tryAgain": "Bitte versuchen Sie es erneut.",
@@ -35,5 +39,7 @@
     "emailRequired": "E-Mail ist erforderlich",
     "invalidEmail": "Ungültige E-Mail-Adresse",
     "passwordRequired": "Passwort erforderlich",
-    "invalidPassword": "Das Passwort muss mindestens {{min}} Zeichen lang sein"
+    "invalidPassword": "Das Passwort muss mindestens {{min}} Zeichen lang sein",
+    "invalidFieldLength": "Das Feld muss mindestens {{min}} Zeichen lang sein",
+    "fieldRequired": "Dieses Feld ist erforderlich"
 }

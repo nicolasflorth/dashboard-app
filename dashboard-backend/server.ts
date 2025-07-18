@@ -10,9 +10,6 @@ import seedDummyTransactions from './utils/seedDummyTransactions.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const ACCESS_SECRET = process.env.ACCESS_TOKEN_SECRET;
-const REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET;
-
 mongoose.connect('mongodb://localhost:27017/dashboard-app')
 	.then(async () => {
 		console.log('Connected to MongoDB');
@@ -27,7 +24,7 @@ mongoose.connect('mongodb://localhost:27017/dashboard-app')
 		await seedDummyTransactions(user);
 
 		app.listen(4000, () => {
-			console.log('Server is running on http://localhost:4000');
+			console.log('Server is running on ' + process.env.BACKEND_URL);
 		});
 	})
 	.catch((err) => { // Catches errors during the initial connection
@@ -44,7 +41,7 @@ db.on('error', (error) => {
 
 // CORS options
 const corsOptions = {
-	origin: 'http://localhost:5173', // The frontend URL
+	origin: process.env.CLIENT_URL,
 	credentials: true,
 	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 	allowedHeaders: ['Content-Type', 'Authorization']
@@ -57,7 +54,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use((req, res, next) => {
-	console.log(`********** [${req.method}] ${req.url}`, req.body);
+	//console.log(`********** [${req.method}] ${req.url}`, req.body);
 	next();
 });
 

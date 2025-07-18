@@ -1,8 +1,9 @@
-import Transaction from '../models/Transaction.js';
+import Transaction from '../models/Transaction.ts';
+import { IUser } from '../models/User.ts';
 
 const categories = ['Food', 'Rent', 'Salary', 'Shopping', 'Health', 'Transport'];
 
-const seedDummyTransactions = async (user) => {
+const seedDummyTransactions = async (user: IUser) => {
     if (!user || !user._id) {
         console.error('No user ID provided for seeding transactions.');
         return;

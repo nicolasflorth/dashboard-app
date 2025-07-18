@@ -2,7 +2,7 @@
 	"type": "module",
 	"scripts": {
 		"start": "node server.js",
-		"dev": "nodemon server.js"
+		"dev": "nodemon --watch . --ext ts --exec \"node --loader ts-node/esm server.ts\""
 	},
 	"dependencies": {
 		"bcrypt": "^6.0.0",
@@ -10,10 +10,18 @@
 		"cors": "^2.8.5",
 		"dotenv": "^16.5.0",
 		"express": "^5.1.0",
+		"express-validator": "^7.2.1",
 		"jsonwebtoken": "^9.0.2",
-		"mongoose": "^8.15.1"
+		"mongoose": "^8.15.1",
+		"nodemailer": "^7.0.5"
 	},
 	"devDependencies": {
-		"nodemon": "^3.1.10"
+		"@types/bcrypt": "^5.0.2",
+		"@types/jsonwebtoken": "^9.0.10",
+		"@types/node": "^24.0.14",
+		"@types/nodemailer": "^6.4.17",
+		"nodemon": "^3.1.10",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.3"
 	}
 }

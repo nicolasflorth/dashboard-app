@@ -4,6 +4,7 @@ import React, { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from '@/pages/HomePage/HomePage';
 import LoginPage from '@/features/auth/LoginPage';
+import RegisterPage from '@/features/auth/RegisterPage';
 const DashboardPage = lazy(() => import('@/pages/DashboardPage/DashboardPage'));
 const Transactions = lazy(() => import('@/pages/Transactions/Transactions'));
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
@@ -13,6 +14,7 @@ import { useAppSelector } from '@/app/hooks';
 import Header from '@/shared/components/Header/Header'
 import Footer from '@/shared/components/Footer/Footer'
 import { renderLoader } from '@/shared/components/Loader/Loader';
+import { SnackbarProvider } from 'notistack';
 
 // Define ROLES constant
 const ROLES = {
@@ -24,20 +26,34 @@ function App() {
 
 	const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 	return (
-		<>
+		<SnackbarProvider
+			maxSnack={3}
+			anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+			autoHideDuration={3000}
+		>
 			<Header />
 			<Routes>
 				{/* public routes */}
 				<Route path="/" element={<HomePage />} />
 
+				<Route path="/register" element={
+					isAuthenticated
+						?
+						<Navigate to="/dashboard" />
+						:
+						<Suspense fallback={renderLoader()}>
+							<RegisterPage />
+						</Suspense>
+				} />
+
 				<Route path="/login" element={
-					isAuthenticated 
-					? 
-					<Navigate to="/dashboard" /> 
-					: 
-					<Suspense fallback={renderLoader()}>
-						<LoginPage />
-					</Suspense>
+					isAuthenticated
+						?
+						<Navigate to="/dashboard" />
+						:
+						<Suspense fallback={renderLoader()}>
+							<LoginPage />
+						</Suspense>
 				} />
 
 
@@ -67,7 +83,7 @@ function App() {
 				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 			<Footer />
-		</>
+		</SnackbarProvider>
 	);
 }
 

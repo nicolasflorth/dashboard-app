@@ -17,6 +17,7 @@
         "transactions": "Transactions"
     },
     "login": "Login",
+    "register": "Register",
     "logout": "Logout",
     "loggingOut": "Logging out...",
     "add": "Add",
@@ -28,6 +29,9 @@
     "light/dark": "Light/Dark Mode",
     "email": "Email",
     "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "username": "Username",
     "submit": "Submit",
     "loading": "Loading...",
     "tryAgain": "Please try again.",
@@ -35,5 +39,7 @@
     "emailRequired": "Email is required",
     "invalidEmail": "Invalid email address",
     "passwordRequired": "Password is required",
-    "invalidPassword": "Password must be at least {{min}} characters long"
+    "invalidPassword": "Password must be at least {{min}} characters long",
+    "invalidFieldLength": "The field must be at least {{min}} characters long",
+    "fieldRequired": "This field is required"
 }

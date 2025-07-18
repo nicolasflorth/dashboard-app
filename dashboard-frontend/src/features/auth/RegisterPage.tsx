@@ -1,95 +1,116 @@
-import styles from './LoginPage.module.scss';
-import { useDispatch } from 'react-redux';
+import styles from './styles/RegisterPage.module.scss';
+import { useMemo, useEffect } from 'react';
+import { useAppSelector } from '@/app/hooks';
+import { useAppDispatch } from '@/app/hooks';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Cookies from 'js-cookie';
-import { login } from '@/features/auth/authSlice';
+import { useTranslation } from "react-i18next";
+import type { TFunction } from "i18next";
+import { useSnackbar } from 'notistack';
+import { useMutation, UseMutationResult } from '@tanstack/react-query';
+import { api } from '@/api/users';
 
 
-const schema = z.object({
-	email: z.string().email("Invalid email address").nonempty("Email is required"),
-	password: z.string().min(6, "Password must be at least 6 characters long").nonempty("Password is required"),
-});
+interface RegisterResponse {
+	message: string;
+}
 
-type FormFields = z.infer<typeof schema>;
+interface RegisterInput {
+	email: string;
+	username: string;
+	password: string;
+	firstName: string;
+	lastName: string;
+}
 
-function LoginPage() {
-	const dispatch = useDispatch();
+const createRegisterSchema = (t: TFunction) =>
+	z.object({
+		username: z.string().nonempty(t("fieldRequired")).min(2, t("invalidFieldLength", { min: 2 })),
+		email: z.string().nonempty(t("emailRequired")).email(t("invalidEmail")),
+		password: z.string().nonempty(t("passwordRequired")).min(6, t("invalidPassword", { min: 6 })),
+		firstName: z.string().nonempty(t("fieldRequired")).min(2, t("invalidFieldLength", { min: 2 })),
+		lastName: z.string().nonempty(t("fieldRequired")).min(2, t("invalidFieldLength", { min: 2 })),
+		gender: z.string().optional(),
+	});
+
+function RegisterPage() {
+	const { t, i18n } = useTranslation();
+  	const { enqueueSnackbar } = useSnackbar();
+
+	const schema = useMemo(() => createRegisterSchema(t), [i18n.language]);
+	type RegisterFormFields = z.infer<typeof schema>;
+
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const { register,
+	const user = useAppSelector((state) => state.auth.user);
+
+	if (user) {
+		console.log(user.roles);
+	}
+
+	const {
+		register,
 		handleSubmit,
 		setError,
+		reset,
 		formState: { errors, isSubmitting }
-	} = useForm<FormFields>({
+	} = useForm<RegisterFormFields>({
 		defaultValues: {
-			email: "test@",
-			password: ""
+			email: '',
+			password: '',
 		},
 		resolver: zodResolver(schema),
 	});
 
-	const loginUser = async () => {
-		// Simulate a login request
-		try {
-			const response = await fetch('https://dummyjson.com/auth/login', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				credentials: 'include',
-				body: JSON.stringify({
-					username: 'emilys',
-					password: 'emilyspass',
-					expiresInMins: 30,
-				}),
-			});
-
-			if (!response.ok) {
-				throw new Error(`Login failed with status ${response.status}`);
-			}
-
-			const data = await response.json();
-			console.log(data);
-			return data;
-		} catch (error) {
-			console.error("Login error:", error);
-			throw error;
+	const registerMutation: UseMutationResult<RegisterResponse, any, RegisterInput> = useMutation({
+		mutationFn: (formData: RegisterFormFields) => api.register(formData),
+		onSuccess: (data) => {
+			enqueueSnackbar(data.message || "Check your email to confirm your account!", { variant: 'success' });
+			navigate('/login');
+		},
+		onError: (error) => {
+			enqueueSnackbar(error.response?.data.message || "Something went wrong", { variant: 'error' });
 		}
-	}
+	});
 
-	const onSubmit: SubmitHandler<FormFields> = async (data) => {
-		console.log(data);
-		try {
-			const loginResult = await loginUser();
-			Cookies.set("token", loginResult.token, { expires: 1 });
-			dispatch(login({ user: loginResult.user, token: loginResult.token }));
-			navigate('/dashboard');
-			throw new Error("Email already taken");
-		} catch (error) {
-			setError("root", {
-				message: "Login failed. Please try again.",
-			});
-		}
-	}
+	const onSubmit: SubmitHandler<RegisterFormFields> = (formData) => {
+		console.log(formData);
+		registerMutation.mutate(formData);
+	};
 
 	const onError = (errors: any) => {
 		console.log("Form validation errors:", errors);
 	};
 
 	return (
-		<main className={styles.loginForm}>
-			<h1>Login</h1>
+		<main className={styles.registerForm}>
+			<h1>{t("register")}</h1>
 			<form onSubmit={handleSubmit(onSubmit, onError)}>
-				<input {...register("email")} type="text" placeholder="Email" />
+				<input {...register("email")} type="text" placeholder={t("email")} />
 				{errors.email && <span className={styles.error}>{errors.email.message}</span>}
-				<input {...register("password")} type="password" placeholder="Password" />
+
+				{errors.username && <span className={styles.error}>{errors.username.message}</span>}
+				<input {...register("username")} type="text" placeholder={t("username")} />
+
+				<input {...register("password")} type="password" placeholder={t("password")} />
 				{errors.password && <span className={styles.error}>{errors.password.message}</span>}
-				<button disabled={isSubmitting} type="submit">{isSubmitting ? "Loading..." : "Submit"}</button>
+
+				<input {...register("firstName")} type="text" placeholder={t("firstName")} />
+				{errors.firstName && <span className={styles.error}>{errors.firstName.message}</span>}
+
+				<input {...register("lastName")} type="text" placeholder={t("lastName")} />
+				{errors.lastName && <span className={styles.error}>{errors.lastName.message}</span>}
+
+				<button disabled={registerMutation.status === "pending"} type="submit">
+					{registerMutation.status === "pending" ? t("loading") : t("submit")}
+				</button>
 				{errors.root && <span className={styles.error}>{errors.root.message}</span>}
 			</form>
 		</main>
 	);
 }
 
-export default LoginPage;
+export default RegisterPage;

@@ -5,9 +5,9 @@ export interface User {
 	email: string;
 	firstName: string;
 	lastName: string;
-	gender: string;
+	gender?: string;
 	roles: string[];
-	image: string;
+	image?: string;
 }
 
 export type MinimalUser = Pick<User, '_id' | 'email' | 'roles'>;

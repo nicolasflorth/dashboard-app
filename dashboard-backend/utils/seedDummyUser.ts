@@ -1,4 +1,4 @@
-import User from '../models/User.js';
+import User from '../models/User.ts';
 
 async function seedDummyUser() {
     let user = await User.findOne({ email: 'test@test.com' });
@@ -11,6 +11,8 @@ async function seedDummyUser() {
             firstName: 'Emily',
             lastName: 'Johnson',
             gender: 'female',
+            roles: ['user'],
+            activated: true,
             image: 'https://dummyjson.com/icon/emilys/128',
             createdAt: new Date(),
         });

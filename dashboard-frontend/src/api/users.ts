@@ -10,6 +10,11 @@ export const api = {
 		const res = await httpClient.put(`/users/${id}`, data);
 		return res.data;
 	},
+	
+	register: async (formData: { username: string; email: string; password: string; firstName: string; lastName: string}) => {
+		const res = await httpClient.post('/users/auth/register', formData);
+		return res.data; // { message: "Please confirm your email..." }
+	},
 
 	login: async (credentials: { email: string; password: string }) => {
 		const res = await httpClient.post('/users/auth/login', credentials, {

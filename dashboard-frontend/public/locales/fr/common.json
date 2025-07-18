@@ -17,6 +17,7 @@
         "transactions": "Transactions"
     },
     "login": "Se connecter",
+    "register": "S'inscrire",
     "logout": "Déconnexion",
     "loggingOut": "Déconnexion...",
     "add": "Ajouter",
@@ -28,6 +29,9 @@
     "light/dark": "Mode clair/sombre",
     "email": "E-mail",
     "password": "Mot de passe",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "username": "Nom d'utilisateur",
     "submit": "Soumettre",
     "loading": "Chargement...",
     "tryAgain": "Veuillez réessayer.",
@@ -35,5 +39,7 @@
     "emailRequired": "L'e-mail est obligatoire",
     "invalidEmail": "Adresse e-mail invalide",
     "passwordRequired": "Le mot de passe est requis",
-    "invalidPassword": "Le mot de passe doit comporter au moins {{min}} caractères"
+    "invalidPassword": "Le mot de passe doit comporter au moins {{min}} caractères",
+    "invalidFieldLength": "Le champ doit comporter au moins {{min}} caractères",
+    "fieldRequired": "Ce champ est obligatoire"
 }

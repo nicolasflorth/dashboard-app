@@ -17,6 +17,7 @@
         "transactions": "Transacciones"
     },
     "login": "Acceso",
+    "register": "Registro",
     "logout": "Cerrar sesión",
     "loggingOut": "Cerrando sesión...",
     "add": "Agregar",
@@ -28,6 +29,9 @@
     "light/dark": "Modo claro/oscuro",
     "email": "Correo electrónico",
     "password": "Contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "username": "Nombre de usuario",
     "submit": "Entregar",
     "loading": "Cargando...",
     "tryAgain": "Por favor, inténtelo de nuevo.",
@@ -35,5 +39,7 @@
     "emailRequired": "Se requiere correo electrónico",
     "invalidEmail": "Dirección de correo electrónico no válida",
     "passwordRequired": "Se requiere contraseña",
-    "invalidPassword": "La contraseña debe tener al menos {{min}} caracteres."
+    "invalidPassword": "La contraseña debe tener al menos {{min}} caracteres.",
+    "invalidFieldLength": "El campo debe tener al menos {{min}} caracteres.",
+    "fieldRequired": "Este campo es obligatorio"
 }

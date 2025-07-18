@@ -1,6 +1,6 @@
 
 import express from 'express';
-import Transaction from '../models/Transaction.js';
+import Transaction from '../models/Transaction.ts';
 const router = express.Router();
 
 router.get('/:userId/transactions', async (req, res) => {
