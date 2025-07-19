@@ -15,6 +15,8 @@ import { api } from '@/api/users';
 import type { Mock } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const queryClient = new QueryClient();
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@/i18n';
 
 const createTestStore = () => {
 	return configureStore({
@@ -48,6 +50,8 @@ describe('LoginPage', () => {
 		vi.resetAllMocks();         // resets mocks
 		global.fetch = vi.fn();     // fresh mock each test
 		mockNavigate.mockReset();   // clear navigate calls
+
+		//await i18n.changeLanguage('es'); //if you want to change the language for each test
 	});
 
 	const renderPage = (customStore: AppStore) => {
@@ -55,7 +59,9 @@ describe('LoginPage', () => {
 			<Provider store={customStore}>
 				<QueryClientProvider client={queryClient}>
 					<BrowserRouter>
-						<LoginPage />
+						<I18nextProvider i18n={i18n}>
+							<LoginPage />
+						</I18nextProvider>
 					</BrowserRouter>
 				</QueryClientProvider>
 			</Provider>

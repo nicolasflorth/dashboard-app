@@ -10,7 +10,7 @@ type PopupProps = {
 }
 
 const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
-	const { t } = useTranslation();
+	const { t } = useTranslation('common');
     if (!isOpen) return null;
 
     useEffect(() => {

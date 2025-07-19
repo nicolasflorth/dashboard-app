@@ -11,6 +11,8 @@ import Transactions from '@/pages/Transactions/Transactions';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTransaction } from '@/api/transactions';
 import type { Mock } from 'vitest';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '@/i18n';
 
 vi.mock('@/api/transactions', () => ({
 	createTransaction: vi.fn()
@@ -77,14 +79,17 @@ describe('Create transaction integration', () => {
 			<Provider store={testStore}>
 				<QueryClientProvider client={queryClient}>
 					<BrowserRouter>
-						<Transactions />
+						<I18nextProvider i18n={i18n}>
+							<Transactions />
+						</I18nextProvider>
 					</BrowserRouter>
 				</QueryClientProvider>
 			</Provider>
 		);
 
 		// Click on "+ Add transaction" button to open the popup
-		fireEvent.click(screen.getByText('+ Add transaction'));
+		const button = await screen.getByText('+ Add Transaction');
+		fireEvent.click(button);
 
 		const heading = await screen.findByRole('heading', { name: /add transaction/i });
 		expect(heading).toBeInTheDocument();
@@ -168,7 +173,7 @@ describe('Create transaction integration', () => {
 			</Provider>
 		);
 
-		fireEvent.click(screen.getByText('+ Add transaction'));
+		fireEvent.click(screen.getByText('+ Add Transaction'));
 
 		// Wait for popup to render
 		await waitFor(() => screen.getByRole('heading', { name: /add transaction/i }));

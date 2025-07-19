@@ -1,5 +1,5 @@
 // Popup.test.tsx
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Popup from './Popup';
 import { vi } from 'vitest';
@@ -57,8 +57,7 @@ describe('Popup component', () => {
 				<div>Modal Content</div>
 			</Popup>
 		);
-
-		const closeButton = screen.getByText('Close');
+		const closeButton = await screen.getByText('Close');
 		await userEvent.click(closeButton);
 		expect(onClose).toHaveBeenCalled();
 	});

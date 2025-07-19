@@ -92,8 +92,8 @@ function RegisterPage() {
 				<input {...register("email")} type="text" placeholder={t("email")} />
 				{errors.email && <span className={styles.error}>{errors.email.message}</span>}
 
-				{errors.username && <span className={styles.error}>{errors.username.message}</span>}
 				<input {...register("username")} type="text" placeholder={t("username")} />
+				{errors.username && <span className={styles.error}>{errors.username.message}</span>}
 
 				<input {...register("password")} type="password" placeholder={t("password")} />
 				{errors.password && <span className={styles.error}>{errors.password.message}</span>}
