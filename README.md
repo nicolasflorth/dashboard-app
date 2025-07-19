@@ -12,6 +12,7 @@
 
 ## The Frontend is using
 - React 19
+- TypeScript
 - React router
 - Redux toolkit
 - React datetime
@@ -20,10 +21,20 @@
 - MUI components
 - Axios
 - JWT
-- Vitest
+- Vitest (unit and integration tests)
 - Translation with i18next and lazy loaded files
 - Light/Dark theme
+- notistack - a npm package to show notifications as on the Login page bellow
 
+## The Backend is using
+- bcrypt - to securely store passwords into the database
+- cookie-parser - to set cookies
+- cors
+- dotenv - for environment variables to seek secret data secret
+- express
+- jsonwebtoken - for authentication and authorisation 
+- mongoose - for the database
+- nodemailer - to send emails for when a new created account needs email validation
 
 # Recomended environment
 - node v20.19.3 
@@ -39,17 +50,22 @@
       </a>
     </td>
     <td>
+      <a href="images/register-page.jpg" target="_blank">
+        <img src="images/register-page.jpg" alt="Register page" width="250" style="margin:10px;" />
+      </a>
+    </td>
+    <td>
       <a href="images/dashboard-page-min.jpg" target="_blank">
         <img src="images/dashboard-page-min.jpg" alt="Dashboard page" width="250" style="margin:10px;" />
       </a>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href="images/transactions-listing-min.jpg" target="_blank">
         <img src="images/transactions-listing-min.jpg" alt="Transactions listing" width="250" style="margin:10px;" />
       </a>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href="images/transactions-listing-light-theme-min.jpg" target="_blank">
         <img src="images/transactions-listing-light-theme-min.jpg" alt="Transactions listing light theme" width="250" style="margin:10px;" />
@@ -60,13 +76,13 @@
         <img src="images/transactions-listing-add-transaction-min.jpg" alt="Add transaction" width="250" style="margin:10px;" />
       </a>
     </td>
+  </tr>
+  <tr>
     <td>
       <a href="images/transactions-listing-edit-transaction-min.jpg" target="_blank">
         <img src="images/transactions-listing-edit-transaction-min.jpg" alt="Edit transaction" width="250" style="margin:10px;" />
       </a>
     </td>
-  </tr>
-  <tr>
     <td>
       <a href="images/transactions-listing-remove-transaction-min.jpg" target="_blank">
         <img src="images/transactions-listing-remove-transaction-min.jpg" alt="Remove transaction" width="250" style="margin:10px;" />
